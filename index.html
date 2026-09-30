@@ -1,1 +1,6616 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NOLSO Complete Marketplace" />
+  <title>NOLSO — Complete Marketplace</title>
+
+  <style>
+    :root {
+      --primary: #087c68;
+      --primary-dark: #045546;
+      --primary-light: #e7f7f2;
+      --background: #f5faf8;
+      --surface: #ffffff;
+      --text: #102d28;
+      --muted: #70817c;
+      --border: #e0ece8;
+      --danger: #dc5362;
+      --warning: #d79816;
+      --shadow: 0 12px 35px rgba(8, 64, 53, 0.09);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .app {
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(15px);
+    }
+
+    .top-header {
+      max-width: 1500px;
+      margin: auto;
+      min-height: 75px;
+      padding: 12px 25px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--primary);
+      font-size: 25px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #21b494);
+    }
+
+    .search-wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 14px 18px 14px 45px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      color: var(--text);
+      background: #fff;
+    }
+
+    .search-wrapper input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(8, 124, 104, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .header-button {
+      min-width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      position: relative;
+    }
+
+    .counter {
+      position: absolute;
+      right: -5px;
+      top: -6px;
+      min-width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      padding: 0 4px;
+      color: #fff;
+      background: var(--danger);
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .admin-button {
+      padding: 11px 14px;
+      color: var(--primary);
+      border: 1px solid #b9ddd4;
+      border-radius: 12px;
+      background: var(--primary-light);
+      font-weight: 800;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1500px;
+      margin: 25px auto;
+      padding: 38px;
+      min-height: 270px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      border-radius: 25px;
+      background:
+        radial-gradient(circle at 85% 20%, #36bea5, transparent 28%),
+        linear-gradient(135deg, #075b4c, #0b9377);
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      right: -120px;
+      bottom: -230px;
+      border: 55px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      margin: 9px 0 13px;
+      font-size: clamp(31px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      margin-bottom: 20px;
+      color: #dbf5ee;
+      line-height: 1.6;
+    }
+
+    .hero-graphic {
+      position: relative;
+      z-index: 1;
+      margin-right: 8%;
+      font-size: 100px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow {
+      color: #b8f2e4;
+    }
+
+    /* BUTTONS */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 12px 17px;
+      border-radius: 12px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--primary);
+    }
+
+    .button-light {
+      color: var(--primary);
+      background: white;
+    }
+
+    .button-outline {
+      color: var(--primary);
+      border: 1px solid #b9ddd4;
+      background: white;
+    }
+
+    .button-danger {
+      color: var(--danger);
+      background: #fff0f2;
+    }
+
+    .button-small {
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    /* MAIN CONTENT */
+
+    .main {
+      max-width: 1500px;
+      margin: auto;
+      padding: 0 25px 80px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 15px;
+      margin: 30px 0 18px;
+    }
+
+    h2 {
+      margin-top: 6px;
+      font-size: 27px;
+      letter-spacing: -0.7px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* CATEGORY GRID */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+    }
+
+    .category-card {
+      min-height: 110px;
+      padding: 13px 7px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: white;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .category-card:hover,
+    .category-card.active {
+      color: var(--primary);
+      border-color: #9bd2c5;
+      background: var(--primary-light);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #eaf7f3;
+      font-size: 22px;
+    }
+
+    /* FILTERS */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: white;
+    }
+
+    .filters select,
+    .filters input {
+      min-width: 150px;
+      padding: 11px 12px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 10px;
+      background: white;
+    }
+
+    .results-info {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+      margin-top: 18px;
+    }
+
+    .product-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 5px 18px rgba(20, 60, 53, 0.05);
+    }
+
+    .product-image {
+      height: 190px;
+      overflow: hidden;
+      position: relative;
+      background: #edf6f3;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.35s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      padding: 6px 9px;
+      color: var(--primary);
+      border-radius: 8px;
+      background: white;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .wishlist {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      border-radius: 12px;
+      background: white;
+      font-size: 19px;
+    }
+
+    .wishlist.active {
+      color: var(--danger);
+      background: #fff0f2;
+    }
+
+    .product-info {
+      padding: 14px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 15px;
+    }
+
+    .product-category {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .rating {
+      color: #e5a81d;
+      font-size: 12px;
+    }
+
+    .rating span {
+      margin-left: 5px;
+      color: var(--muted);
+    }
+
+    .price-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 11px 0 14px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .old-price {
+      color: #aab8b5;
+      font-size: 12px;
+      font-weight: normal;
+      text-decoration: line-through;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      padding: 45px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px dashed #c4ddd5;
+      border-radius: 18px;
+      background: white;
+    }
+
+    /* CART */
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(8, 35, 29, 0.58);
+      backdrop-filter: blur(4px);
+    }
+
+    .overlay.open {
+      display: block;
+    }
+
+    .drawer {
+      width: min(430px, 100%);
+      height: 100%;
+      padding: 23px;
+      overflow-y: auto;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: white;
+      transform: translateX(100%);
+      transition: 0.25s;
+    }
+
+    .overlay.open .drawer {
+      transform: translateX(0);
+    }
+
+    .close {
+      width: 34px;
+      height: 34px;
+      float: right;
+      border-radius: 10px;
+      color: var(--text);
+      background: #eff6f3;
+      font-size: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item img {
+      width: 61px;
+      height: 61px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .quantity button {
+      width: 25px;
+      height: 25px;
+      color: var(--primary);
+      border-radius: 7px;
+      background: var(--primary-light);
+      font-weight: 900;
+    }
+
+    /* ADMIN MODAL */
+
+    .modal {
+      width: min(570px, calc(100% - 30px));
+      padding: 25px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 21px;
+      background: white;
+      transform: translate(-50%, -45%);
+      transition: 0.2s;
+    }
+
+    .overlay.open .modal {
+      transform: translate(-50%, -50%);
+    }
+
+    .modal h2 {
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 13px;
+      color: var(--text);
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 11px;
+      background: white;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 100;
+      max-width: 350px;
+      padding: 15px 18px;
+      color: white;
+      border-radius: 13px;
+      background: #153d35;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(120px);
+      transition: 0.3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1150px) {
+      .categories {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .top-header {
+        flex-wrap: wrap;
+        padding: 13px 15px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .search-wrapper {
+        order: 2;
+        flex-basis: 100%;
+      }
+
+      .admin-button {
+        display: none;
+      }
+
+      .hero {
+        margin: 15px;
+        padding: 28px 22px;
+      }
+
+      .hero-graphic {
+        display: none;
+      }
+
+      .main {
+        padding: 0 15px 60px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .categories {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .category-card {
+        min-height: 93px;
+        font-size: 10px;
+      }
+
+      .category-icon {
+        width: 37px;
+        height: 37px;
+        font-size: 18px;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 11px;
+      }
+
+      .product-image {
+        height: 145px;
+      }
+
+      .product-info {
+        padding: 11px;
+      }
+
+      .product-info h3 {
+        font-size: 13px;
+      }
+
+      .price-line {
+        font-size: 15px;
+      }
+
+      .product-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filters {
+        flex-direction: column;
+      }
+
+      .filters select,
+      .filters input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- HEADER -->
+    <header>
+      <div class="top-header">
+        <div class="logo">
+          <span class="logo-mark">N</span>
+          NOLSO
+        </div>
+
+        <div class="search-wrapper">
+          <span class="search-icon">⌕</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Raadi alaab, category ama seller..."
+          />
+        </div>
+
+        <div class="header-actions">
+          <button
+            class="header-button"
+            onclick="showToast('Notifications ayaa la furay')"
+          >
+            ♧
+            <span class="counter">3</span>
+          </button>
+
+          <button
+            class="header-button"
+            onclick="openCart()"
+          >
+            🛒
+            <span class="counter" id="cartCounter">0</span>
+          </button>
+
+          <button
+            class="admin-button"
+            onclick="openAdminModal()"
+          >
+            + Add Category
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">NOLSO Complete Marketplace</div>
+
+        <h1>Wax kasta oo aad rabto, hal marketplace.</h1>
+
+        <p>
+          Ka hel electronics, fashion, food, vehicles, services iyo
+          kumannaan alaabood oo kala duwan hal meel.
+        </p>
+
+        <button
+          class="button button-light"
+          onclick="document.getElementById('marketplace').scrollIntoView({ behavior: 'smooth' })"
+        >
+          Bilow shopping →
+        </button>
+      </div>
+
+      <div class="hero-graphic">🛍️</div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="main" id="marketplace">
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">All marketplace categories</div>
+          <h2>Dooro qaybta aad rabto</h2>
+        </div>
+
+        <button
+          class="button button-outline button-small"
+          onclick="resetMarketplace()"
+        >
+          Dhammaan alaabta
+        </button>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="categories" id="categoriesContainer"></div>
+
+      <!-- FILTERS -->
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Marketplace products</div>
+          <h2 id="currentCategoryTitle">Dhammaan alaabta</h2>
+        </div>
+      </div>
+
+      <div class="filters">
+        <input
+          id="locationFilter"
+          type="text"
+          placeholder="Location, tusaale Mogadishu..."
+        />
+
+        <select id="conditionFilter">
+          <option value="">Condition kasta</option>
+          <option value="New">New</option>
+          <option value="Used">Used</option>
+          <option value="Refurbished">Refurbished</option>
+          <option value="Open Box">Open Box</option>
+        </select>
+
+        <select id="priceFilter">
+          <option value="">Price kasta</option>
+          <option value="0-50">$0 — $50</option>
+          <option value="51-200">$51 — $200</option>
+          <option value="201-700">$201 — $700</option>
+          <option value="701-99999">$701+</option>
+        </select>
+
+        <select id="sortFilter">
+          <option value="featured">Featured</option>
+          <option value="low">Qiime: hoose ilaa sare</option>
+          <option value="high">Qiime: sare ilaa hoose</option>
+          <option value="rating">Rating-ka ugu sarreeya</option>
+        </select>
+
+        <button
+          class="button button-outline button-small"
+          onclick="resetFilters()"
+        >
+          Reset filters
+        </button>
+      </div>
+
+      <div class="results-info" id="resultsInfo"></div>
+
+      <!-- PRODUCT GRID -->
+      <div class="products" id="productsContainer"></div>
+
+    </main>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div
+    class="overlay"
+    id="cartOverlay"
+    onclick="closeCart()"
+  >
+    <aside
+      class="drawer"
+      onclick="event.stopPropagation()"
+    >
+      <button class="close" onclick="closeCart()">×</button>
+
+      <h2>
+        Cart
+        <span
+          id="cartTitle"
+          class="muted"
+          style="font-size:14px"
+        >
+          (0 items)
+        </span>
+      </h2>
+
+      <div id="cartItems"></div>
+      <div id="cartSummary" style="margin-top:20px"></div>
+    </aside>
+  </div>
+
+  <!-- ADMIN CATEGORY MODAL -->
+  <div
+    class="overlay"
+    id="adminOverlay"
+    onclick="closeAdminModal()"
+  >
+    <div
+      class="modal"
+      onclick="event.stopPropagation()"
+    >
+      <button class="close" onclick="closeAdminModal()">×</button>
+
+      <h2>Admin: Ku dar category cusub</h2>
+
+      <div class="form-group">
+        <label>Category name</label>
+        <input
+          id="newCategoryName"
+          type="text"
+          placeholder="Tusaale: Health & Wellness"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Category icon</label>
+        <input
+          id="newCategoryIcon"
+          type="text"
+          placeholder="Tusaale: 🏥"
+        />
+      </div>
+
+      <div class="modal-actions">
+        <button
+          class="button button-outline"
+          onclick="closeAdminModal()"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="button button-primary"
+          onclick="createCategory()"
+        >
+          Create category
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAILS MODAL -->
+  <div
+    class="overlay"
+    id="productOverlay"
+    onclick="closeProductModal()"
+  >
+    <div
+      class="modal"
+      onclick="event.stopPropagation()"
+    >
+      <button class="close" onclick="closeProductModal()">×</button>
+      <div id="productDetails"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const defaultCategories = [
+      ["📱", "Electronics"],
+      ["📞", "Phones"],
+      ["💻", "Computers"],
+      ["👕", "Clothes"],
+      ["👟", "Shoes"],
+      ["💄", "Cosmetics"],
+      ["🌺", "Perfumes"],
+      ["🍔", "Food"],
+      ["🛋️", "Furniture"],
+      ["🏠", "Home Appliances"],
+      ["🚗", "Vehicles"],
+      ["⚙️", "Spare Parts"],
+      ["📚", "Books"],
+      ["⚽", "Sports Equipment"],
+      ["🍼", "Baby Products"],
+      ["🛒", "Groceries"],
+      ["🧱", "Construction Materials"],
+      ["🖨️", "Office Equipment"],
+      ["🌾", "Agricultural Products"],
+      ["💾", "Digital Products"],
+      ["🛠️", "Services"]
+    ];
+
+    const products = [
+      {
+        id: 1,
+        name: "iPhone 15 Pro 256GB",
+        category: "Phones",
+        price: 1199,
+        oldPrice: 1299,
+        rating: 4.9,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "NOLSO Tech",
+        stock: 17,
+        tag: "Best Seller",
+        image: "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=700&q=85",
+        description: "iPhone 15 Pro cusub oo leh 256GB storage iyo camera tayo sare leh."
+      },
+      {
+        id: 2,
+        name: "Dell XPS 15 Laptop",
+        category: "Computers",
+        price: 899,
+        oldPrice: 999,
+        rating: 4.8,
+        condition: "New",
+        location: "Hargeisa",
+        seller: "Computer World",
+        stock: 8,
+        tag: "Popular",
+        image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=85",
+        description: "Laptop awood badan oo ku habboon shaqo, design iyo waxbarasho."
+      },
+      {
+        id: 3,
+        name: "Nike Air Max 270",
+        category: "Shoes",
+        price: 145,
+        oldPrice: 180,
+        rating: 4.7,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Sport House",
+        stock: 24,
+        tag: "-20%",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85",
+        description: "Kabo Nike Air Max 270 ah oo raaxo iyo tayo sare leh."
+      },
+      {
+        id: 4,
+        name: "Organic Skincare Set",
+        category: "Cosmetics",
+        price: 48,
+        oldPrice: 60,
+        rating: 4.5,
+        condition: "New",
+        location: "Garowe",
+        seller: "Glow Store",
+        stock: 31,
+        tag: "Organic",
+        image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=85",
+        description: "Organic skincare set oo loogu talagalay daryeelka maqaarka."
+      },
+      {
+        id: 5,
+        name: "Premium Perfume Collection",
+        category: "Perfumes",
+        price: 75,
+        oldPrice: 95,
+        rating: 4.6,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Scent House",
+        stock: 18,
+        tag: "Premium",
+        image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=85",
+        description: "Ur udgoon premium ah oo ku habboon rag iyo dumar."
+      },
+      {
+        id: 6,
+        name: "Premium Coffee Beans",
+        category: "Food",
+        price: 18,
+        oldPrice: 22,
+        rating: 4.8,
+        condition: "New",
+        location: "Hargeisa",
+        seller: "Bari Coffee",
+        stock: 45,
+        tag: "Fresh",
+        image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=700&q=85",
+        description: "Qaxwo tayo sare leh oo cusub, si fiican loo dubay."
+      },
+      {
+        id: 7,
+        name: "Modern Lounge Chair",
+        category: "Furniture",
+        price: 299,
+        oldPrice: 359,
+        rating: 4.6,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Home Living",
+        stock: 6,
+        tag: "New",
+        image: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=700&q=85",
+        description: "Kursi casri ah oo qurux badan oo ku habboon guriga."
+      },
+      {
+        id: 8,
+        name: "Smart Home Lamp",
+        category: "Home Appliances",
+        price: 39,
+        oldPrice: 49,
+        rating: 4.4,
+        condition: "New",
+        location: "Kismayo",
+        seller: "Home Living",
+        stock: 20,
+        tag: "Smart",
+        image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=85",
+        description: "Smart lamp leh brightness settings kala duwan."
+      },
+      {
+        id: 9,
+        name: "Toyota Corolla Spare Part",
+        category: "Spare Parts",
+        price: 120,
+        oldPrice: 150,
+        rating: 4.3,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Auto Parts Center",
+        stock: 12,
+        tag: "Verified",
+        image: "https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=700&q=85",
+        description: "Spare part tayo leh oo ku habboon Toyota Corolla."
+      },
+      {
+        id: 10,
+        name: "Business Management Book",
+        category: "Books",
+        price: 25,
+        oldPrice: 30,
+        rating: 4.7,
+        condition: "New",
+        location: "Hargeisa",
+        seller: "Book Center",
+        stock: 50,
+        tag: "Recommended",
+        image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=700&q=85",
+        description: "Buug kaa caawinaya maamulka iyo kobcinta business-ka."
+      },
+      {
+        id: 11,
+        name: "Football Training Kit",
+        category: "Sports Equipment",
+        price: 65,
+        oldPrice: 80,
+        rating: 4.5,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Sports World",
+        stock: 22,
+        tag: "Sports",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85",
+        description: "Qalab football training ah oo dhamaystiran."
+      },
+      {
+        id: 12,
+        name: "Baby Care Starter Pack",
+        category: "Baby Products",
+        price: 55,
+        oldPrice: 70,
+        rating: 4.8,
+        condition: "New",
+        location: "Garowe",
+        seller: "Baby World",
+        stock: 27,
+        tag: "Family",
+        image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=700&q=85",
+        description: "Baby care starter pack oo leh alaabta muhiimka ah."
+      },
+      {
+        id: 13,
+        name: "Fresh Grocery Basket",
+        category: "Groceries",
+        price: 35,
+        oldPrice: 42,
+        rating: 4.6,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Fresh Market",
+        stock: 40,
+        tag: "Fresh",
+        image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85",
+        description: "Basket groceries ah oo leh khudaar iyo cuntooyin cusub."
+      },
+      {
+        id: 14,
+        name: "Construction Cement Pack",
+        category: "Construction Materials",
+        price: 90,
+        oldPrice: 110,
+        rating: 4.4,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "Build Center",
+        stock: 100,
+        tag: "Wholesale",
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=85",
+        description: "Qalab construction ah oo loogu talagalay dhismayaasha."
+      },
+      {
+        id: 15,
+        name: "Office Printer Pro",
+        category: "Office Equipment",
+        price: 249,
+        oldPrice: 299,
+        rating: 4.5,
+        condition: "New",
+        location: "Hargeisa",
+        seller: "Office Solutions",
+        stock: 9,
+        tag: "Business",
+        image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=700&q=85",
+        description: "Printer professional ah oo ku habboon xafiisyada."
+      },
+      {
+        id: 16,
+        name: "Digital Design Template Pack",
+        category: "Digital Products",
+        price: 29,
+        oldPrice: 45,
+        rating: 4.9,
+        condition: "New",
+        location: "Online",
+        seller: "NOLSO Digital",
+        stock: 999,
+        tag: "Instant Download",
+        image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=700&q=85",
+        description: "Digital template pack loogu talagalay business iyo social media."
+      },
+      {
+        id: 17,
+        name: "Professional Cleaning Service",
+        category: "Services",
+        price: 40,
+        oldPrice: 50,
+        rating: 4.8,
+        condition: "New",
+        location: "Mogadishu",
+        seller: "CleanPro Services",
+        stock: 20,
+        tag: "Service",
+        image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=85",
+        description: "Adeeg nadiifin professional ah oo guriga iyo xafiiska ah."
+      },
+      {
+        id: 18,
+        name: "Used Toyota Corolla 2016",
+        category: "Vehicles",
+        price: 12500,
+        oldPrice: 13500,
+        rating: 4.3,
+        condition: "Used",
+        location: "Mogadishu",
+        seller: "SomAuto",
+        stock: 1,
+        tag: "Used",
+        image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=700&q=85",
+        description: "Toyota Corolla 2016 oo xaalad wanaagsan ku jirta."
+      },
+      {
+        id: 19,
+        name: "Agricultural Seeds Pack",
+        category: "Agricultural Products",
+        price: 32,
+        oldPrice: 40,
+        rating: 4.5,
+        condition: "New",
+        location: "Baidoa",
+        seller: "Agro Somalia",
+        stock: 70,
+        tag: "Agriculture",
+        image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=700&q=85",
+        description: "Abuur tayo sare leh oo ku habboon beeraha kala duwan."
+      },
+      {
+        id: 20,
+        name: "Men's Cotton Shirt",
+        category: "Clothes",
+        price: 28,
+        oldPrice: 35,
+        rating: 4.5,
+        condition: "New",
+        location: "Hargeisa",
+        seller: "Fashion Point",
+        stock: 34,
+        tag: "Fashion",
+        image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=85",
+        description: "Shaati cotton ah oo tayo leh oo ku habboon maalin kasta."
+      }
+    ];
+
+    let categories = [
+      ...defaultCategories
+    ];
+
+    let currentCategory = "";
+    let cart = JSON.parse(localStorage.getItem("nolsoMarketplaceCart") || "[]");
+    let wishlist = JSON.parse(localStorage.getItem("nolsoMarketplaceWishlist") || "[]");
+
+    const $ = selector => document.querySelector(selector);
+
+    function showToast(message) {
+      const toast = $("#toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2800);
+    }
+
+    function saveData() {
+      localStorage.setItem(
+        "nolsoMarketplaceCart",
+        JSON.stringify(cart)
+      );
+
+      localStorage.setItem(
+        "nolsoMarketplaceWishlist",
+        JSON.stringify(wishlist)
+      );
+
+      $("#cartCounter").textContent = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+    }
+
+    function renderCategories() {
+      <LaTex>("#categoriesContainer").innerHTML = categories.map(category => {         const icon = category[0];         const name = category[1];          return `           <button             class="category-card</LaTex>{currentCategory === name ? "active" : ""}"
+            onclick="selectCategory('<LaTex>{name}')"           >             <span class="category-icon"></LaTex>{icon}</span>
+            <span><LaTex>{name}</span>           </button>         `;       }).join("");     }      function selectCategory(category) {       currentCategory = category;</LaTex>("#currentCategoryTitle").textContent = category;
+
+      renderCategories();
+      renderProducts();
+
+      window.scrollTo({
+        top: document.getElementById("marketplace").offsetTop - 80,
+        behavior: "smooth"
+      });
+    }
+
+    function resetMarketplace() {
+      currentCategory = "";
+      <LaTex>("#currentCategoryTitle").textContent = "Dhammaan alaabta";       resetFilters();     }      function resetFilters() {       currentCategory = "";</LaTex>("#currentCategoryTitle").textContent = "Dhammaan alaabta";
+      <LaTex>("#searchInput").value = "";</LaTex>("#locationFilter").value = "";
+      <LaTex>("#conditionFilter").value = "";</LaTex>("#priceFilter").value = "";
+      <LaTex>("#sortFilter").value = "featured";        renderCategories();       renderProducts();     }      function renderProducts() {       const search =</LaTex>("#searchInput").value.toLowerCase();
+      const location = <LaTex>("#locationFilter").value.toLowerCase();       const condition =</LaTex>("#conditionFilter").value;
+      const priceRange = <LaTex>("#priceFilter").value;       const sort =</LaTex>("#sortFilter").value;
+
+      let filtered = products.filter(product => {
+        const matchesCategory =
+          !currentCategory ||
+          product.category.toLowerCase() === currentCategory.toLowerCase();
+
+        const searchableText = `
+          <LaTex>{product.name}</LaTex>{product.category}
+          <LaTex>{product.seller}</LaTex>{product.location}
+        `.toLowerCase();
+
+        const matchesSearch =
+          !search || searchableText.includes(search);
+
+        const matchesLocation =
+          !location ||
+          product.location.toLowerCase().includes(location);
+
+        const matchesCondition =
+          !condition ||
+          product.condition === condition;
+
+        let matchesPrice = true;
+
+        if (priceRange) {
+          const [min, max] = priceRange.split("-").map(Number);
+          matchesPrice =
+            product.price >= min &&
+            product.price <= max;
+        }
+
+        return (
+          matchesCategory &&
+          matchesSearch &&
+          matchesLocation &&
+          matchesCondition &&
+          matchesPrice
+        );
+      });
+
+      if (sort === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+      }
+
+      if (sort === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+
+      if (sort === "rating") {
+        filtered.sort((a, b) => b.rating - a.rating);
+      }
+
+      <LaTex>("#resultsInfo").textContent =         `</LaTex>{filtered.length} product(s) ayaa la helay`;
+
+      if (!filtered.length) {
+        $("#productsContainer").innerHTML = `
+          <div class="empty">
+            <h3>Wax natiijo ah lama helin</h3>
+            <p style="margin-top:8px">
+              Beddel search-ka ama filters-kaaga.
+            </p>
+
+            <button
+              class="button button-outline button-small"
+              style="margin-top:15px"
+              onclick="resetFilters()"
+            >
+              Reset marketplace
+            </button>
+          </div>
+        `;
+
+        return;
+      }
+
+      $("#productsContainer").innerHTML =
+        filtered.map(productCardHTML).join("");
+    }
+
+    function productCardHTML(product) {
+      const liked = wishlist.includes(product.id);
+
+      return `
+        <article class="product-card">
+          <div class="product-image">
+            <img
+              src="<LaTex>{product.image}"               alt="</LaTex>{product.name}"
+              loading="lazy"
+            />
+
+            <span class="product-tag"><LaTex>{product.tag}</span>              <button               class="wishlist</LaTex>{liked ? "active" : ""}"
+              onclick="toggleWishlist(<LaTex>{product.id})"               aria-label="Add to wishlist"             ></LaTex>{liked ? "♥" : "♡"}
+            </button>
+          </div>
+
+          <div class="product-info">
+            <div class="product-category">
+              <LaTex>{product.category} ·</LaTex>{product.location}
+            </div>
+
+            <h3 title="<LaTex>{product.name}"></LaTex>{product.name}
+            </h3>
+
+            <div class="rating">
+              ★★★★★
+              <span><LaTex>{product.rating} ·</LaTex>{product.seller}</span>
+            </div>
+
+            <div class="price-line">
+              <LaTexBlock>{product.price.toLocaleString()}               <span class="old-price"></LaTexBlock>{product.oldPrice.toLocaleString()}
+              </span>
+            </div>
+
+            <div class="product-footer">
+              <span>Stock: <LaTex>{product.stock}</span>                <button                 class="button button-outline button-small"                 onclick="openProductDetails(</LaTex>{product.id})"
+              >
+                Details
+              </button>
+
+              <button
+                class="button button-primary button-small"
+                onclick="addToCart(${product.id})"
+              >
+                Cart
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function toggleWishlist(productId) {
+      if (wishlist.includes(productId)) {
+        wishlist = wishlist.filter(id => id !== productId);
+        showToast("Alaabta wishlist-ka waa laga saaray");
+      } else {
+        wishlist.push(productId);
+        showToast("Alaabta wishlist-ka ayaa lagu daray");
+      }
+
+      saveData();
+      renderProducts();
+    }
+
+    function addToCart(productId) {
+      const existing = cart.find(item => item.id === productId);
+
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({
+          id: productId,
+          quantity: 1
+        });
+      }
+
+      saveData();
+      showToast("Alaabta cart-ka ayaa lagu daray");
+    }
+
+    function openCart() {
+      renderCart();
+      $("#cartOverlay").classList.add("open");
+    }
+
+    function closeCart() {
+      <LaTex>("#cartOverlay").classList.remove("open");     }      function renderCart() {       const totalItems = cart.reduce(         (total, item) => total + item.quantity,         0       );</LaTex>("#cartTitle").textContent =
+        `(<LaTex>{totalItems} items)`;        if (!cart.length) {</LaTex>("#cartItems").innerHTML = `
+          <div class="empty">
+            Cart-kaagu waa madhan.
+            <br />
+
+            <button
+              class="button button-primary button-small"
+              style="margin-top:14px"
+              onclick="closeCart()"
+            >
+              Xir
+            </button>
+          </div>
+        `;
+
+        <LaTex>("#cartSummary").innerHTML = "";         return;       }        let total = 0;</LaTex>("#cartItems").innerHTML = cart.map(item => {
+        const product = products.find(
+          product => product.id === item.id
+        );
+
+        total += product.price * item.quantity;
+
+        return `
+          <div class="cart-item">
+            <img
+              src="<LaTex>{product.image}"               alt="</LaTex>{product.name}"
+            />
+
+            <div style="flex:1">
+              <b><LaTex>{product.name}</b>                <div                 class="muted"                 style="font-size:12px;margin-top:5px"               ></LaTex>${product.price} × <LaTex>{item.quantity}               </div>                <div class="quantity">                 <button onclick="changeQuantity(</LaTex>{product.id}, -1)">
+                  −
+                </button>
+
+                <span><LaTex>{item.quantity}</span>                  <button onclick="changeQuantity(</LaTex>{product.id}, 1)">
+                  +
+                </button>
+
+                <button
+                  onclick="removeFromCart(<LaTex>{product.id})"                   style="margin-left:auto;color:var(--danger)"                 >                   ×                 </button>               </div>             </div>           </div>         `;       }).join("");</LaTex>("#cartSummary").innerHTML = `
+        <div
+          style="display:flex;justify-content:space-between;margin-bottom:15px"
+        >
+          <b>Total</b>
+          <strong>$${total.toLocaleString()}</strong>
+        </div>
+
+        <button
+          class="button button-primary"
+          style="width:100%"
+          onclick="checkout()"
+        >
+          Proceed to checkout →
+        </button>
+      `;
+    }
+
+    function changeQuantity(productId, change) {
+      const item = cart.find(item => item.id === productId);
+
+      if (!item) return;
+
+      item.quantity += change;
+
+      if (item.quantity <= 0) {
+        cart = cart.filter(item => item.id !== productId);
+      }
+
+      saveData();
+      renderCart();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+
+      saveData();
+      renderCart();
+
+      showToast("Alaabta cart-ka waa laga saaray");
+    }
+
+    function checkout() {
+      closeCart();
+      showToast(
+        "Checkout waa diyaar. Payment backend ayaa loo baahan yahay."
+      );
+    }
+
+    function openAdminModal() {
+      $("#adminOverlay").classList.add("open");
+    }
+
+    function closeAdminModal() {
+      $("#adminOverlay").classList.remove("open");
+    }
+
+    function createCategory() {
+      const name = $("#newCategoryName").value.trim();
+      const icon = $("#newCategoryIcon").value.trim() || "📦";
+
+      if (!name) {
+        showToast("Fadlan geli magaca category-ga");
+        return;
+      }
+
+      const exists = categories.some(
+        category =>
+          category[1].toLowerCase() === name.toLowerCase()
+      );
+
+      if (exists) {
+        showToast("Category-gan hore ayuu u jiray");
+        return;
+      }
+
+      categories.push([icon, name]);
+
+      renderCategories();
+      closeAdminModal();
+
+      $("#newCategoryName").value = "";
+      $("#newCategoryIcon").value = "";
+
+      showToast("Category cusub ayaa la sameeyay");
+    }
+
+    function openProductDetails(productId) {
+      const product = products.find(
+        product => product.id === productId
+      );
+
+      $("#productDetails").innerHTML = `
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          style="width:100%;height:250px;object-fit:cover;border-radius:15px"
+        />
+
+        <div style="margin-top:20px">
+          <div class="eyebrow">${product.category}</div>
+
+          <h2>${product.name}</h2>
+
+          <p class="muted" style="margin:10px 0;line-height:1.6">
+            ${product.description}
+          </p>
+
+          <div class="rating">
+            ★★★★★
+            <span>${product.rating} rating</span>
+          </div>
+
+          <div class="price-line">
+            $${product.price.toLocaleString()}
+            <span class="old-price">
+              <LaTex>${product.oldPrice.toLocaleString()}             </span>           </div>            <p class="muted" style="font-size:13px;line-height:1.8">             Seller:</LaTex>{product.seller}<br />
+            Location: <LaTex>{product.location}<br />             Condition:</LaTex>{product.condition}<br />
+            Stock: <LaTex>{product.stock}           </p>            <button             class="button button-primary"             style="width:100%;margin-top:18px"             onclick="addToCart(</LaTex>{product.id});closeProductModal()"
+          >
+            Add to cart
+          </button>
+        </div>
+      `;
+
+      <LaTex>("#productOverlay").classList.add("open");     }      function closeProductModal() {</LaTex>("#productOverlay").classList.remove("open");
+    }
+
+    [
+      "#searchInput",
+      "#locationFilter",
+      "#conditionFilter",
+      "#priceFilter",
+      "#sortFilter"
+    ].forEach(selector => {
+      <LaTex>(selector).addEventListener("input", renderProducts);</LaTex>(selector).addEventListener("change", renderProducts);
+    });
+
+    renderCategories();
+    renderProducts();
+    saveData();
+  </script>
+<!-- =========================================================
+     NOLSO SECTION 2
+     REAL PRODUCT IMAGE SYSTEM
+========================================================= -->
+
+<section
+  id="real-product-image-system"
+  style="
+    max-width:1500px;
+    margin:40px auto;
+    padding:0 25px 80px;
+  "
+>
+  <div
+    style="
+      padding:32px;
+      border-radius:24px;
+      background:linear-gradient(135deg,#075b4c,#0b9377);
+      color:white;
+      margin-bottom:25px;
+    "
+  >
+    <div
+      style="
+        color:#b8f2e4;
+        font-size:12px;
+        font-weight:800;
+        letter-spacing:.13em;
+        text-transform:uppercase;
+      "
+    >
+      Seller product media center
+    </div>
+
+    <h2 style="font-size:36px;margin:10px 0">
+      Real Product Image System
+    </h2>
+
+    <p style="max-width:720px;color:#d9f4ed;line-height:1.7">
+      Seller-ku wuxuu geli karaa sawirka ugu weyn, sawirro dheeraad ah,
+      xaglo kala duwan iyo product video. NOLSO wuxuu hubinayaa tayada,
+      file type-ka, size-ka iyo duplicate images.
+    </p>
+  </div>
+
+  <div
+    style="
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    "
+    class="nolso-image-system-grid"
+  >
+    <!-- LEFT: UPLOAD AREA -->
+    <div
+      style="
+        padding:24px;
+        border:1px solid #e0ece8;
+        border-radius:20px;
+        background:white;
+        box-shadow:0 8px 28px rgba(8,64,53,.06);
+      "
+    >
+      <h3 style="margin-bottom:8px">
+        Product images
+      </h3>
+
+      <p
+        style="
+          color:#70817c;
+          font-size:13px;
+          line-height:1.6;
+          margin-bottom:18px;
+        "
+      >
+        Geli ugu yaraan hal sawir. Sawirka ugu horreeya wuxuu noqonayaa
+        main image-ka product-ka.
+      </p>
+
+      <label
+        for="nolsoProductImages"
+        style="
+          min-height:180px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+          gap:10px;
+          padding:25px;
+          color:#087c68;
+          border:2px dashed #a9d8cd;
+          border-radius:18px;
+          background:#f0faf7;
+          text-align:center;
+          cursor:pointer;
+        "
+      >
+        <span style="font-size:43px">📸</span>
+
+        <strong>
+          Riix si aad sawirro u geliso
+        </strong>
+
+        <small style="color:#70817c">
+          JPG, JPEG, PNG ama WEBP — ugu badnaan 10MB sawirkiiba
+        </small>
+
+        <input
+          id="nolsoProductImages"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          multiple
+          hidden
+        />
+      </label>
+
+      <div
+        id="nolsoImageValidationMessage"
+        style="
+          display:none;
+          margin-top:15px;
+          padding:12px;
+          border-radius:11px;
+          font-size:13px;
+          line-height:1.5;
+        "
+      ></div>
+
+      <div style="margin-top:20px">
+        <div
+          style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:10px;
+          "
+        >
+          <strong>Images selected</strong>
+
+          <span
+            id="nolsoImageCounter"
+            style="
+              padding:5px 9px;
+              color:#087c68;
+              border-radius:8px;
+              background:#e7f7f2;
+              font-size:12px;
+              font-weight:800;
+            "
+          >
+            0 / 8
+          </span>
+        </div>
+
+        <div
+          id="nolsoImagePreviewGrid"
+          style="
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:10px;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: RULES AND VIDEO -->
+    <div
+      style="
+        padding:24px;
+        border:1px solid #e0ece8;
+        border-radius:20px;
+        background:white;
+        box-shadow:0 8px 28px rgba(8,64,53,.06);
+      "
+    >
+      <h3 style="margin-bottom:8px">
+        Image quality rules
+      </h3>
+
+      <div
+        style="
+          display:grid;
+          gap:10px;
+          margin-top:17px;
+        "
+      >
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            padding:13px;
+            border-radius:12px;
+            background:#f5faf8;
+          "
+        >
+          <span>✓</span>
+          <span style="font-size:13px">
+            Sawirku waa inuu ahaadaa ugu yaraan
+            <b>600 × 600 pixels</b>.
+          </span>
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            padding:13px;
+            border-radius:12px;
+            background:#f5faf8;
+          "
+        >
+          <span>✓</span>
+          <span style="font-size:13px">
+            Waxaa la oggol yahay
+            <b>JPG, JPEG, PNG iyo WEBP</b>.
+          </span>
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            padding:13px;
+            border-radius:12px;
+            background:#f5faf8;
+          "
+        >
+          <span>✓</span>
+          <span style="font-size:13px">
+            Sawir kasta waa inuusan ka weynaan
+            <b>10MB</b>.
+          </span>
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            padding:13px;
+            border-radius:12px;
+            background:#fff8e6;
+          "
+        >
+          <span>⚠</span>
+          <span style="font-size:13px">
+            Ha isticmaalin sawir marin habaabinaya customer-ka.
+          </span>
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            padding:13px;
+            border-radius:12px;
+            background:#fff0f2;
+          "
+        >
+          <span>!</span>
+          <span style="font-size:13px">
+            Sawirrada sharci-darrada ah ama aan product-ka matalin
+            waa la diidi karaa.
+          </span>
+        </div>
+      </div>
+
+      <div
+        style="
+          height:1px;
+          margin:25px 0;
+          background:#e0ece8;
+        "
+      ></div>
+
+      <h3 style="margin-bottom:8px">
+        Product video
+      </h3>
+
+      <p
+        style="
+          color:#70817c;
+          font-size:13px;
+          line-height:1.6;
+          margin-bottom:13px;
+        "
+      >
+        Video-ga product-ka waa optional. Wuxuu customer-ka ka caawinayaa
+        inuu si fiican u fahmo alaabta.
+      </p>
+
+      <label
+        for="nolsoProductVideo"
+        style="
+          display:flex;
+          align-items:center;
+          gap:10px;
+          padding:14px;
+          color:#087c68;
+          border:1px solid #b9ddd4;
+          border-radius:12px;
+          background:#f0faf7;
+          cursor:pointer;
+          font-size:13px;
+          font-weight:800;
+        "
+      >
+        🎥 Dooro product video
+        <input
+          id="nolsoProductVideo"
+          type="file"
+          accept="video/mp4,video/webm,video/quicktime"
+          hidden
+        />
+      </label>
+
+      <div
+        id="nolsoVideoName"
+        style="
+          margin-top:10px;
+          color:#70817c;
+          font-size:12px;
+        "
+      >
+        Video lama dooran.
+      </div>
+
+      <button
+        id="nolsoUploadMediaButton"
+        type="button"
+        style="
+          width:100%;
+          margin-top:22px;
+          padding:14px;
+          color:white;
+          border-radius:12px;
+          background:#087c68;
+          font-weight:800;
+          cursor:pointer;
+        "
+      >
+        Save product media
+      </button>
+
+      <div
+        id="nolsoUploadProgressWrapper"
+        style="
+          display:none;
+          margin-top:15px;
+        "
+      >
+        <div
+          style="
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:7px;
+            color:#70817c;
+            font-size:12px;
+          "
+        >
+          <span>Uploading media...</span>
+          <span id="nolsoUploadPercentage">0%</span>
+        </div>
+
+        <div
+          style="
+            height:8px;
+            overflow:hidden;
+            border-radius:10px;
+            background:#e7efec;
+          "
+        >
+          <div
+            id="nolsoUploadProgress"
+            style="
+              width:0%;
+              height:100%;
+              border-radius:10px;
+              background:#087c68;
+              transition:.2s;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /*
+    NOLSO REAL PRODUCT IMAGE SYSTEM
+    Frontend validation:
+    - File type
+    - File size
+    - Image dimensions
+    - Duplicate files
+    - Maximum 8 images
+    - Main image selection
+    - Image removal
+    - Video selection
+  */
+
+  const nolsoImageInput =
+    document.getElementById("nolsoProductImages");
+
+  const nolsoVideoInput =
+    document.getElementById("nolsoProductVideo");
+
+  const nolsoPreviewGrid =
+    document.getElementById("nolsoImagePreviewGrid");
+
+  const nolsoCounter =
+    document.getElementById("nolsoImageCounter");
+
+  const nolsoValidationMessage =
+    document.getElementById("nolsoImageValidationMessage");
+
+  const nolsoVideoName =
+    document.getElementById("nolsoVideoName");
+
+  const nolsoUploadButton =
+    document.getElementById("nolsoUploadMediaButton");
+
+  const nolsoProgressWrapper =
+    document.getElementById("nolsoUploadProgressWrapper");
+
+  const nolsoProgress =
+    document.getElementById("nolsoUploadProgress");
+
+  const nolsoPercentage =
+    document.getElementById("nolsoUploadPercentage");
+
+  let nolsoSelectedImages = [];
+  let nolsoMainImageIndex = 0;
+  let nolsoSelectedVideo = null;
+
+  function nolsoShowValidation(message, type = "error") {
+    nolsoValidationMessage.style.display = "block";
+    nolsoValidationMessage.textContent = message;
+
+    if (type === "success") {
+      nolsoValidationMessage.style.color = "#087c68";
+      nolsoValidationMessage.style.background = "#e7f7f2";
+    } else {
+      nolsoValidationMessage.style.color = "#c7384b";
+      nolsoValidationMessage.style.background = "#fff0f2";
+    }
+  }
+
+  function nolsoHideValidation() {
+    nolsoValidationMessage.style.display = "none";
+    nolsoValidationMessage.textContent = "";
+  }
+
+  function nolsoFileAlreadySelected(file) {
+    return nolsoSelectedImages.some(item => {
+      return (
+        item.name === file.name &&
+        item.size === file.size &&
+        item.lastModified === file.lastModified
+      );
+    });
+  }
+
+  function nolsoCheckImageDimensions(file) {
+    return new Promise(resolve => {
+      const image = new Image();
+      const objectUrl = URL.createObjectURL(file);
+
+      image.onload = function () {
+        const valid =
+          image.width >= 600 &&
+          image.height >= 600;
+
+        URL.revokeObjectURL(objectUrl);
+
+        resolve({
+          valid,
+          width: image.width,
+          height: image.height
+        });
+      };
+
+      image.onerror = function () {
+        URL.revokeObjectURL(objectUrl);
+
+        resolve({
+          valid: false,
+          width: 0,
+          height: 0
+        });
+      };
+
+      image.src = objectUrl;
+    });
+  }
+
+  async function nolsoProcessImages(files) {
+    nolsoHideValidation();
+
+    const imageFiles = Array.from(files);
+
+    if (!imageFiles.length) {
+      return;
+    }
+
+    if (
+      nolsoSelectedImages.length + imageFiles.length > 8
+    ) {
+      nolsoShowValidation(
+        "Waxaad geli kartaa ugu badnaan 8 sawir product kasta."
+      );
+
+      return;
+    }
+
+    for (const file of imageFiles) {
+      const validTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ];
+
+      if (!validTypes.includes(file.type)) {
+        nolsoShowValidation(
+          `<LaTex>{file.name} lama oggola. Isticmaal JPG, PNG ama WEBP.`         );          continue;       }        const maxSize =         10 * 1024 * 1024;        if (file.size > maxSize) {         nolsoShowValidation(           `</LaTex>{file.name} wuu ka weyn yahay 10MB.`
+        );
+
+        continue;
+      }
+
+      if (nolsoFileAlreadySelected(file)) {
+        nolsoShowValidation(
+          `<LaTex>{file.name} waa duplicate image.`         );          continue;       }        const dimensions =         await nolsoCheckImageDimensions(file);        if (!dimensions.valid) {         nolsoShowValidation(           `</LaTex>{file.name} waa low quality. Sawirku waa inuu ugu yaraan ahaadaa 600 × 600 pixels.`
+        );
+
+        continue;
+      }
+
+      nolsoSelectedImages.push(file);
+    }
+
+    nolsoRenderImagePreviews();
+
+    if (nolsoSelectedImages.length > 0) {
+      nolsoShowValidation(
+        `<LaTex>{nolsoSelectedImages.length} sawir ayaa si guul leh loo doortay.`,         "success"       );     }   }    function nolsoRenderImagePreviews() {     nolsoPreviewGrid.innerHTML = "";      nolsoCounter.textContent =       `</LaTex>{nolsoSelectedImages.length} / 8`;
+
+    nolsoSelectedImages.forEach((file, index) => {
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const wrapper = document.createElement("div");
+
+        wrapper.style.position = "relative";
+        wrapper.style.overflow = "hidden";
+        wrapper.style.borderRadius = "13px";
+        wrapper.style.border =
+          index === nolsoMainImageIndex
+            ? "3px solid #087c68"
+            : "1px solid #e0ece8";
+        wrapper.style.background = "#f5faf8";
+
+        wrapper.innerHTML = `
+          <img
+            src="${event.target.result}"
+            alt="Product image"
+            style="
+              width:100%;
+              height:115px;
+              display:block;
+              object-fit:cover;
+            "
+          >
+
+          <div
+            style="
+              padding:7px;
+              color:#102d28;
+              background:white;
+              font-size:10px;
+              line-height:1.4;
+            "
+          >
+            <b>
+              ${
+                index === nolsoMainImageIndex
+                  ? "MAIN IMAGE"
+                  : "Additional image"
+              }
+            </b>
+
+            <br>
+
+            <span style="color:#70817c">
+              <LaTex>{file.name.substring(0, 20)}             </span>           </div>            <button             type="button"             data-image-index="</LaTex>{index}"
+            class="nolso-remove-image"
+            style="
+              position:absolute;
+              right:6px;
+              top:6px;
+              width:25px;
+              height:25px;
+              color:white;
+              border-radius:8px;
+              background:#dc5362;
+              cursor:pointer;
+              font-weight:900;
+            "
+          >
+            ×
+          </button>
+
+          <LaTex>{             index !== nolsoMainImageIndex               ? `                 <button                   type="button"                   data-main-index="</LaTex>{index}"
+                  class="nolso-make-main"
+                  style="
+                    width:100%;
+                    padding:7px;
+                    color:#087c68;
+                    border:0;
+                    background:#e7f7f2;
+                    cursor:pointer;
+                    font-size:10px;
+                    font-weight:800;
+                  "
+                >
+                  Make main image
+                </button>
+              `
+              : `
+                <div
+                  style="
+                    padding:7px;
+                    color:#087c68;
+                    background:#e7f7f2;
+                    text-align:center;
+                    font-size:10px;
+                    font-weight:800;
+                  "
+                >
+                  ✓ Main image
+                </div>
+              `
+          }
+        `;
+
+        nolsoPreviewGrid.appendChild(wrapper);
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  nolsoPreviewGrid.addEventListener("click", function (event) {
+    const removeButton =
+      event.target.closest(".nolso-remove-image");
+
+    const mainButton =
+      event.target.closest(".nolso-make-main");
+
+    if (removeButton) {
+      const index =
+        Number(removeButton.dataset.imageIndex);
+
+      nolsoSelectedImages.splice(index, 1);
+
+      if (
+        nolsoMainImageIndex >=
+        nolsoSelectedImages.length
+      ) {
+        nolsoMainImageIndex = 0;
+      }
+
+      nolsoRenderImagePreviews();
+
+      nolsoShowValidation(
+        "Sawirka waa laga saaray.",
+        "success"
+      );
+    }
+
+    if (mainButton) {
+      nolsoMainImageIndex =
+        Number(mainButton.dataset.mainIndex);
+
+      nolsoRenderImagePreviews();
+
+      nolsoShowValidation(
+        "Main image-ka waa la beddelay.",
+        "success"
+      );
+    }
+  });
+
+  nolsoImageInput.addEventListener("change", function () {
+    nolsoProcessImages(this.files);
+
+    this.value = "";
+  });
+
+  nolsoVideoInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) {
+      nolsoSelectedVideo = null;
+      nolsoVideoName.textContent =
+        "Video lama dooran.";
+
+      return;
+    }
+
+    const allowedVideoTypes = [
+      "video/mp4",
+      "video/webm",
+      "video/quicktime"
+    ];
+
+    if (!allowedVideoTypes.includes(file.type)) {
+      nolsoSelectedVideo = null;
+      nolsoVideoName.textContent =
+        "Video type-kan lama oggola.";
+
+      return;
+    }
+
+    const maxVideoSize =
+      100 * 1024 * 1024;
+
+    if (file.size > maxVideoSize) {
+      nolsoSelectedVideo = null;
+      nolsoVideoName.textContent =
+        "Video-gu kama weynaan karo 100MB.";
+
+      return;
+    }
+
+    nolsoSelectedVideo = file;
+
+    nolsoVideoName.textContent =
+      `✓ <LaTex>{file.name} —</LaTex>{(
+        file.size /
+        1024 /
+        1024
+      ).toFixed(2)}MB`;
+  });
+
+  nolsoUploadButton.addEventListener("click", function () {
+    if (!nolsoSelectedImages.length) {
+      nolsoShowValidation(
+        "Fadlan geli ugu yaraan hal sawir product ah."
+      );
+
+      return;
+    }
+
+    nolsoUploadButton.disabled = true;
+    nolsoUploadButton.textContent =
+      "Uploading media...";
+
+    nolsoProgressWrapper.style.display = "block";
+
+    let progress = 0;
+
+    const progressTimer = setInterval(() => {
+      progress += 10;
+
+      nolsoProgress.style.width =
+        `<LaTex>{progress}%`;        nolsoPercentage.textContent =         `</LaTex>{progress}%`;
+
+      if (progress >= 100) {
+        clearInterval(progressTimer);
+
+        nolsoUploadButton.disabled = false;
+        nolsoUploadButton.textContent =
+          "Save product media";
+
+        nolsoShowValidation(
+          "Product media si guul leh ayaa loo diyaariyay. Backend/CDN ayaa upload-ka dhabta ah dhamaystiraya.",
+          "success"
+        );
+
+        if (typeof showToast === "function") {
+          showToast(
+            "Product images waa la xaqiijiyay oo waa diyaar."
+          );
+        }
+      }
+    }, 120);
+  });
+
+  /*
+    Responsive adjustment for the two-column image system
+  */
+
+  const nolsoImageSystemStyle =
+    document.createElement("style");
+
+  nolsoImageSystemStyle.textContent = `
+    @media (max-width: 760px) {
+      .nolso-image-system-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(nolsoImageSystemStyle);
+</script>
+<!-- =========================================================
+     NOLSO SECTION 3
+     PROFESSIONAL PRODUCT DETAILS SYSTEM
+========================================================= -->
+
+<section
+  id="nolso-product-details-section"
+  style="
+    max-width:1500px;
+    margin:40px auto;
+    padding:0 25px 80px;
+  "
+>
+  <!-- BREADCRUMB -->
+  <div
+    style="
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:18px;
+      color:#70817c;
+      font-size:13px;
+    "
+  >
+    <button
+      type="button"
+      onclick="nolsoGoBackToMarketplace()"
+      style="
+        color:#087c68;
+        background:none;
+        cursor:pointer;
+        font-weight:800;
+      "
+    >
+      Marketplace
+    </button>
+
+    <span>›</span>
+
+    <span id="nolsoProductBreadcrumbCategory">
+      Electronics
+    </span>
+
+    <span>›</span>
+
+    <span
+      id="nolsoProductBreadcrumbName"
+      style="color:#102d28"
+    >
+      Product Details
+    </span>
+  </div>
+
+  <!-- PRODUCT DETAILS MAIN AREA -->
+  <div
+    style="
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      padding:25px;
+      border:1px solid #e0ece8;
+      border-radius:24px;
+      background:#ffffff;
+      box-shadow:0 10px 35px rgba(8,64,53,.07);
+    "
+    class="nolso-product-details-grid"
+  >
+    <!-- PRODUCT GALLERY -->
+    <div>
+      <div
+        style="
+          height:460px;
+          position:relative;
+          overflow:hidden;
+          border-radius:20px;
+          background:#f0f7f4;
+        "
+      >
+        <img
+          id="nolsoProductMainImage"
+          src="https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=1000&q=90"
+          alt="NOLSO Product"
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            transition:.3s;
+          "
+        />
+
+        <span
+          id="nolsoProductDiscountBadge"
+          style="
+            position:absolute;
+            left:18px;
+            top:18px;
+            padding:8px 12px;
+            color:#087c68;
+            border-radius:9px;
+            background:#ffffff;
+            font-size:12px;
+            font-weight:900;
+          "
+        >
+          -8% Discount
+        </span>
+
+        <button
+          id="nolsoProductWishlistButton"
+          type="button"
+          onclick="nolsoToggleProductWishlist()"
+          style="
+            position:absolute;
+            right:18px;
+            top:18px;
+            width:44px;
+            height:44px;
+            display:grid;
+            place-items:center;
+            color:#dc5362;
+            border-radius:13px;
+            background:white;
+            cursor:pointer;
+            font-size:22px;
+          "
+        >
+          ♡
+        </button>
+
+        <button
+          type="button"
+          onclick="nolsoOpenProductVideo()"
+          style="
+            position:absolute;
+            left:50%;
+            bottom:18px;
+            transform:translateX(-50%);
+            padding:10px 14px;
+            color:#102d28;
+            border-radius:11px;
+            background:rgba(255,255,255,.94);
+            cursor:pointer;
+            font-size:12px;
+            font-weight:800;
+          "
+        >
+          ▶ Watch product video
+        </button>
+      </div>
+
+      <!-- THUMBNAILS -->
+      <div
+        id="nolsoProductThumbnails"
+        style="
+          display:grid;
+          grid-template-columns:repeat(5,1fr);
+          gap:10px;
+          margin-top:13px;
+        "
+      ></div>
+
+      <div
+        id="nolsoGalleryMessage"
+        style="
+          display:none;
+          margin-top:12px;
+          padding:10px;
+          color:#087c68;
+          border-radius:10px;
+          background:#e7f7f2;
+          font-size:12px;
+        "
+      ></div>
+    </div>
+
+    <!-- PRODUCT INFORMATION -->
+    <div>
+      <div
+        id="nolsoProductCategory"
+        style="
+          margin-bottom:10px;
+          color:#087c68;
+          font-size:12px;
+          font-weight:900;
+          letter-spacing:.12em;
+          text-transform:uppercase;
+        "
+      >
+        Electronics
+      </div>
+
+      <h1
+        id="nolsoProductName"
+        style="
+          margin:0 0 12px;
+          color:#102d28;
+          font-size:clamp(27px,4vw,44px);
+          line-height:1.08;
+          letter-spacing:-1px;
+        "
+      >
+        iPhone 15 Pro 256GB
+      </h1>
+
+      <!-- RATING -->
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          flex-wrap:wrap;
+          gap:12px;
+          margin-bottom:18px;
+        "
+      >
+        <span
+          id="nolsoProductStars"
+          style="
+            color:#e5a81d;
+            font-size:17px;
+          "
+        >
+          ★★★★★
+        </span>
+
+        <button
+          type="button"
+          onclick="nolsoScrollToReviews()"
+          id="nolsoProductReviewCount"
+          style="
+            color:#087c68;
+            background:none;
+            cursor:pointer;
+            font-size:13px;
+            font-weight:800;
+          "
+        >
+          4.9 · 128 reviews
+        </button>
+
+        <span
+          style="
+            padding:6px 9px;
+            color:#15955f;
+            border-radius:8px;
+            background:#e8f8ef;
+            font-size:11px;
+            font-weight:800;
+          "
+        >
+          ✓ Verified product
+        </span>
+      </div>
+
+      <!-- PRICE -->
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          gap:12px;
+          margin-bottom:14px;
+        "
+      >
+        <strong
+          id="nolsoProductPrice"
+          style="
+            color:#087c68;
+            font-size:32px;
+          "
+        >
+          $1,199
+        </strong>
+
+        <span
+          id="nolsoProductOldPrice"
+          style="
+            color:#aab8b5;
+            font-size:15px;
+            text-decoration:line-through;
+          "
+        >
+          $1,299
+        </span>
+
+        <span
+          id="nolsoProductSaveText"
+          style="
+            padding:6px 9px;
+            color:#15955f;
+            border-radius:8px;
+            background:#e8f8ef;
+            font-size:11px;
+            font-weight:800;
+          "
+        >
+          Save $100
+        </span>
+      </div>
+
+      <p
+        id="nolsoProductDescription"
+        style="
+          margin:0 0 22px;
+          color:#70817c;
+          line-height:1.7;
+          font-size:14px;
+        "
+      >
+        iPhone 15 Pro cusub oo leh 256GB storage,
+        camera tayo sare leh iyo battery awood badan.
+      </p>
+
+      <!-- PRODUCT VARIANTS -->
+      <div
+        style="
+          padding:18px;
+          margin-bottom:18px;
+          border:1px solid #e0ece8;
+          border-radius:16px;
+          background:#f9fcfb;
+        "
+      >
+        <!-- COLOR -->
+        <div style="margin-bottom:17px">
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              margin-bottom:9px;
+              font-size:13px;
+              font-weight:800;
+            "
+          >
+            <span>Color</span>
+            <span
+              id="nolsoSelectedColorLabel"
+              style="color:#087c68"
+            >
+              Natural Titanium
+            </span>
+          </div>
+
+          <div
+            id="nolsoColorOptions"
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:9px;
+            "
+          ></div>
+        </div>
+
+        <!-- STORAGE -->
+        <div style="margin-bottom:17px">
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              margin-bottom:9px;
+              font-size:13px;
+              font-weight:800;
+            "
+          >
+            <span>Storage</span>
+            <span
+              id="nolsoSelectedStorageLabel"
+              style="color:#087c68"
+            >
+              256GB
+            </span>
+          </div>
+
+          <div
+            id="nolsoStorageOptions"
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:9px;
+            "
+          ></div>
+        </div>
+
+        <!-- SIZE -->
+        <div>
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              margin-bottom:9px;
+              font-size:13px;
+              font-weight:800;
+            "
+          >
+            <span>Size / Model</span>
+            <span
+              id="nolsoSelectedSizeLabel"
+              style="color:#087c68"
+            >
+              Pro
+            </span>
+          </div>
+
+          <div
+            id="nolsoSizeOptions"
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:9px;
+            "
+          ></div>
+        </div>
+      </div>
+
+      <!-- STOCK AND DELIVERY -->
+      <div
+        style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:10px;
+          margin-bottom:20px;
+        "
+      >
+        <div
+          style="
+            padding:13px;
+            border-radius:12px;
+            background:#e8f8ef;
+          "
+        >
+          <small style="color:#70817c;display:block">
+            Stock status
+          </small>
+
+          <strong
+            id="nolsoProductStock"
+            style="
+              display:block;
+              margin-top:5px;
+              color:#15955f;
+              font-size:13px;
+            "
+          >
+            In stock — 17 available
+          </strong>
+        </div>
+
+        <div
+          style="
+            padding:13px;
+            border-radius:12px;
+            background:#e7f7f2;
+          "
+        >
+          <small style="color:#70817c;display:block">
+            Delivery
+          </small>
+
+          <strong
+            id="nolsoProductDelivery"
+            style="
+              display:block;
+              margin-top:5px;
+              color:#087c68;
+              font-size:13px;
+            "
+          >
+            1–2 business days
+          </strong>
+        </div>
+      </div>
+
+      <!-- QUANTITY AND ACTIONS -->
+      <div
+        style="
+          display:flex;
+          flex-wrap:wrap;
+          gap:10px;
+          margin-bottom:18px;
+        "
+      >
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            gap:13px;
+            padding:4px 9px;
+            border:1px solid #dceae5;
+            border-radius:12px;
+            background:#fff;
+          "
+        >
+          <button
+            type="button"
+            onclick="nolsoChangeProductQuantity(-1)"
+            style="
+              width:28px;
+              height:28px;
+              color:#087c68;
+              border-radius:8px;
+              background:#e7f7f2;
+              cursor:pointer;
+              font-weight:900;
+            "
+          >
+            −
+          </button>
+
+          <strong id="nolsoProductQuantity">1</strong>
+
+          <button
+            type="button"
+            onclick="nolsoChangeProductQuantity(1)"
+            style="
+              width:28px;
+              height:28px;
+              color:#087c68;
+              border-radius:8px;
+              background:#e7f7f2;
+              cursor:pointer;
+              font-weight:900;
+            "
+          >
+            +
+          </button>
+        </div>
+
+        <button
+          type="button"
+          onclick="nolsoAddProductToCart()"
+          style="
+            flex:1;
+            min-width:150px;
+            padding:14px;
+            color:#087c68;
+            border:1px solid #a9d8cd;
+            border-radius:12px;
+            background:#e7f7f2;
+            cursor:pointer;
+            font-weight:900;
+          "
+        >
+          🛒 Add to cart
+        </button>
+
+        <button
+          type="button"
+          onclick="nolsoBuyProductNow()"
+          style="
+            flex:1;
+            min-width:150px;
+            padding:14px;
+            color:#fff;
+            border-radius:12px;
+            background:#087c68;
+            cursor:pointer;
+            font-weight:900;
+          "
+        >
+          Buy now
+        </button>
+      </div>
+
+      <!-- SHARE -->
+      <button
+        type="button"
+        onclick="nolsoShareProduct()"
+        style="
+          padding:0;
+          color:#087c68;
+          background:none;
+          cursor:pointer;
+          font-size:13px;
+          font-weight:800;
+        "
+      >
+        ↗ Share this product
+      </button>
+
+      <!-- SELLER SUMMARY -->
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:12px;
+          margin-top:22px;
+          padding:16px;
+          border:1px solid #e0ece8;
+          border-radius:16px;
+          background:#fff;
+        "
+      >
+        <div style="display:flex;align-items:center;gap:11px">
+          <div
+            style="
+              width:42px;
+              height:42px;
+              display:grid;
+              place-items:center;
+              color:#087c68;
+              border-radius:13px;
+              background:#ccefe5;
+              font-weight:900;
+            "
+          >
+            NT
+          </div>
+
+          <div>
+            <strong id="nolsoSellerName">
+              NOLSO Tech
+            </strong>
+
+            <small
+              style="
+                display:block;
+                margin-top:4px;
+                color:#70817c;
+              "
+            >
+              <span id="nolsoSellerLocation">
+                Mogadishu
+              </span>
+              · 4.9 seller rating
+            </small>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onclick="nolsoOpenSellerProfile()"
+          style="
+            padding:9px 12px;
+            color:#087c68;
+            border:1px solid #b9ddd4;
+            border-radius:10px;
+            background:#fff;
+            cursor:pointer;
+            font-size:12px;
+            font-weight:800;
+          "
+        >
+          View seller
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFORMATION TABS -->
+  <div
+    style="
+      margin-top:24px;
+      padding:24px;
+      border:1px solid #e0ece8;
+      border-radius:22px;
+      background:#fff;
+    "
+  >
+    <div
+      id="nolsoProductTabs"
+      style="
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        margin-bottom:22px;
+        border-bottom:1px solid #e0ece8;
+        padding-bottom:13px;
+      "
+    >
+      <button
+        type="button"
+        class="nolso-product-tab active"
+        data-tab="overview"
+        onclick="nolsoOpenProductTab('overview')"
+      >
+        Overview
+      </button>
+
+      <button
+        type="button"
+        class="nolso-product-tab"
+        data-tab="specifications"
+        onclick="nolsoOpenProductTab('specifications')"
+      >
+        Specifications
+      </button>
+
+      <button
+        type="button"
+        class="nolso-product-tab"
+        data-tab="delivery"
+        onclick="nolsoOpenProductTab('delivery')"
+      >
+        Delivery & returns
+      </button>
+
+      <button
+        type="button"
+        class="nolso-product-tab"
+        data-tab="reviews"
+        onclick="nolsoOpenProductTab('reviews')"
+      >
+        Reviews
+      </button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div
+      id="nolsoTabOverview"
+      class="nolso-product-tab-content active"
+    >
+      <div
+        style="
+          display:grid;
+          grid-template-columns:1.2fr .8fr;
+          gap:28px;
+        "
+        class="nolso-overview-grid"
+      >
+        <div>
+          <h3 style="margin-bottom:10px">
+            Product description
+          </h3>
+
+          <p
+            id="nolsoLongDescription"
+            style="
+              color:#70817c;
+              line-height:1.8;
+              font-size:14px;
+            "
+          >
+            iPhone 15 Pro waxaa lagu sameeyay titanium tayo sare leh.
+            Wuxuu leeyahay camera professional ah, performance degdeg ah,
+            battery waqti dheer shaqaysa iyo 256GB storage. Product-kan
+            waxaa xaqiijiyay seller-ka NOLSO Tech.
+          </p>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom:10px">
+            Product highlights
+          </h3>
+
+          <div style="display:grid;gap:9px">
+            <div
+              style="
+                padding:11px;
+                color:#41645b;
+                border-radius:10px;
+                background:#f5faf8;
+                font-size:13px;
+              "
+            >
+              ✓ Official product information
+            </div>
+
+            <div
+              style="
+                padding:11px;
+                color:#41645b;
+                border-radius:10px;
+                background:#f5faf8;
+                font-size:13px;
+              "
+            >
+              ✓ Verified seller
+            </div>
+
+            <div
+              style="
+                padding:11px;
+                color:#41645b;
+                border-radius:10px;
+                background:#f5faf8;
+                font-size:13px;
+              "
+            >
+              ✓ Secure checkout
+            </div>
+
+            <div
+              style="
+                padding:11px;
+                color:#41645b;
+                border-radius:10px;
+                background:#f5faf8;
+                font-size:13px;
+              "
+            >
+              ✓ Customer support available
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIFICATIONS TAB -->
+    <div
+      id="nolsoTabSpecifications"
+      class="nolso-product-tab-content"
+      style="display:none"
+    >
+      <h3 style="margin-bottom:15px">
+        Technical specifications
+      </h3>
+
+      <div
+        id="nolsoSpecificationsTable"
+        style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          border:1px solid #e0ece8;
+          border-radius:14px;
+          overflow:hidden;
+        "
+      ></div>
+    </div>
+
+    <!-- DELIVERY TAB -->
+    <div
+      id="nolsoTabDelivery"
+      class="nolso-product-tab-content"
+      style="display:none"
+    >
+      <div
+        style="
+          display:grid;
+          grid-template-columns:repeat(3,1fr);
+          gap:13px;
+        "
+        class="nolso-delivery-grid"
+      >
+        <div
+          style="
+            padding:18px;
+            border-radius:15px;
+            background:#e7f7f2;
+          "
+        >
+          <div style="font-size:24px;margin-bottom:9px">🚚</div>
+          <strong>Fast delivery</strong>
+          <p
+            style="
+              margin-top:7px;
+              color:#70817c;
+              font-size:13px;
+              line-height:1.5;
+            "
+          >
+            Delivery 1–2 business days gudaha magaalada.
+          </p>
+        </div>
+
+        <div
+          style="
+            padding:18px;
+            border-radius:15px;
+            background:#fff8e6;
+          "
+        >
+          <div style="font-size:24px;margin-bottom:9px">🛡️</div>
+          <strong>Warranty</strong>
+          <p
+            style="
+              margin-top:7px;
+              color:#70817c;
+              font-size:13px;
+              line-height:1.5;
+            "
+          >
+            Product-ku wuxuu leeyahay 12 bilood warranty.
+          </p>
+        </div>
+
+        <div
+          style="
+            padding:18px;
+            border-radius:15px;
+            background:#f0f1ff;
+          "
+        >
+          <div style="font-size:24px;margin-bottom:9px">↩</div>
+          <strong>Return policy</strong>
+          <p
+            style="
+              margin-top:7px;
+              color:#70817c;
+              font-size:13px;
+              line-height:1.5;
+            "
+          >
+            Waxaad ku soo celin kartaa 14 maalmood gudahood.
+          </p>
+        </div>
+      </div>
+
+      <div
+        style="
+          margin-top:20px;
+          padding:17px;
+          border-radius:14px;
+          background:#f7faf9;
+        "
+      >
+        <strong>Return conditions</strong>
+
+        <ul
+          style="
+            margin:10px 0 0 18px;
+            color:#70817c;
+            line-height:1.8;
+            font-size:13px;
+          "
+        >
+          <li>Product-ku waa inuu ahaadaa xaaladdiisii hore.</li>
+          <li>Packaging-ga iyo accessories-ku waa inay jiraan.</li>
+          <li>Order ID ama proof of purchase waa loo baahan yahay.</li>
+          <li>Refund-ka waxaa la sameeyaa marka inspection la dhammeeyo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- REVIEWS TAB -->
+    <div
+      id="nolsoTabReviews"
+      class="nolso-product-tab-content"
+      style="display:none"
+    >
+      <div
+        style="
+          display:grid;
+          grid-template-columns:220px 1fr;
+          gap:25px;
+        "
+        class="nolso-reviews-grid"
+      >
+        <div
+          style="
+            padding:20px;
+            text-align:center;
+            border-radius:16px;
+            background:#f7faf9;
+          "
+        >
+          <strong
+            style="
+              display:block;
+              color:#087c68;
+              font-size:44px;
+            "
+          >
+            4.9
+          </strong>
+
+          <div
+            style="
+              margin:8px 0;
+              color:#e5a81d;
+              font-size:18px;
+            "
+          >
+            ★★★★★
+          </div>
+
+          <span
+            style="
+              color:#70817c;
+              font-size:12px;
+            "
+          >
+            Based on 128 reviews
+          </span>
+        </div>
+
+        <div>
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:10px;
+              margin-bottom:9px;
+            "
+          >
+            <span style="width:45px;font-size:12px">5 stars</span>
+
+            <div
+              style="
+                flex:1;
+                height:8px;
+                border-radius:10px;
+                background:#e7efec;
+              "
+            >
+              <div
+                style="
+                  width:88%;
+                  height:100%;
+                  border-radius:10px;
+                  background:#087c68;
+                "
+              ></div>
+            </div>
+
+            <span class="muted" style="font-size:12px">112</span>
+          </div>
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:10px;
+              margin-bottom:9px;
+            "
+          >
+            <span style="width:45px;font-size:12px">4 stars</span>
+
+            <div
+              style="
+                flex:1;
+                height:8px;
+                border-radius:10px;
+                background:#e7efec;
+              "
+            >
+              <div
+                style="
+                  width:8%;
+                  height:100%;
+                  border-radius:10px;
+                  background:#087c68;
+                "
+              ></div>
+            </div>
+
+            <span class="muted" style="font-size:12px">10</span>
+          </div>
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:10px;
+              margin-bottom:9px;
+            "
+          >
+            <span style="width:45px;font-size:12px">3 stars</span>
+
+            <div
+              style="
+                flex:1;
+                height:8px;
+                border-radius:10px;
+                background:#e7efec;
+              "
+            >
+              <div
+                style="
+                  width:3%;
+                  height:100%;
+                  border-radius:10px;
+                  background:#087c68;
+                "
+              ></div>
+            </div>
+
+            <span class="muted" style="font-size:12px">4</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          display:grid;
+          gap:13px;
+          margin-top:24px;
+        "
+      >
+        <div
+          style="
+            padding:17px;
+            border:1px solid #e0ece8;
+            border-radius:15px;
+          "
+        >
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              gap:10px;
+            "
+          >
+            <strong>Mohamed A.</strong>
+            <small class="muted">2 days ago</small>
+          </div>
+
+          <div
+            style="
+              margin:7px 0;
+              color:#e5a81d;
+            "
+          >
+            ★★★★★
+          </div>
+
+          <p
+            style="
+              color:#70817c;
+              line-height:1.6;
+              font-size:13px;
+            "
+          >
+            Product-ku waa sida lagu sharaxay. Delivery-gu sidoo kale
+            aad ayuu u degdegay.
+          </p>
+
+          <small
+            style="
+              display:block;
+              margin-top:8px;
+              color:#15955f;
+              font-weight:800;
+            "
+          >
+            ✓ Verified purchase
+          </small>
+        </div>
+
+        <div
+          style="
+            padding:17px;
+            border:1px solid #e0ece8;
+            border-radius:15px;
+          "
+        >
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              gap:10px;
+            "
+          >
+            <strong>Hodan M.</strong>
+            <small class="muted">1 week ago</small>
+          </div>
+
+          <div
+            style="
+              margin:7px 0;
+              color:#e5a81d;
+            "
+          >
+            ★★★★★
+          </div>
+
+          <p
+            style="
+              color:#70817c;
+              line-height:1.6;
+              font-size:13px;
+            "
+          >
+            Seller-ka waa la isku halayn karaa. Product-ka iyo packaging-kuba
+            waxay ahaayeen kuwo aad u wanaagsan.
+          </p>
+
+          <small
+            style="
+              display:block;
+              margin-top:8px;
+              color:#15955f;
+              font-weight:800;
+            "
+          >
+            ✓ Verified purchase
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section
+  style="
+    max-width:1500px;
+    margin:0 auto;
+    padding:0 25px 80px;
+  "
+>
+  <div
+    style="
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:15px;
+      margin-bottom:18px;
+    "
+  >
+    <div>
+      <div
+        style="
+          color:#087c68;
+          font-size:12px;
+          font-weight:900;
+          letter-spacing:.13em;
+          text-transform:uppercase;
+        "
+      >
+        You may also like
+      </div>
+
+      <h2 style="margin-top:6px">
+        Related products
+      </h2>
+    </div>
+
+    <button
+      type="button"
+      onclick="nolsoGoBackToMarketplace()"
+      style="
+        padding:10px 13px;
+        color:#087c68;
+        border:1px solid #b9ddd4;
+        border-radius:10px;
+        background:#fff;
+        cursor:pointer;
+        font-size:12px;
+        font-weight:800;
+      "
+    >
+      View marketplace
+    </button>
+  </div>
+
+  <div
+    id="nolsoRelatedProducts"
+    style="
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    "
+    class="nolso-related-products-grid"
+  ></div>
+</section>
+
+<script>
+  /*
+    NOLSO SECTION 3 JAVASCRIPT
+    Professional product details:
+    - Gallery thumbnails
+    - Image switching
+    - Color / storage / size variants
+    - Quantity management
+    - Wishlist
+    - Cart integration
+    - Product details tabs
+    - Specifications
+    - Delivery and returns
+    - Reviews
+    - Related products
+    - Share product
+  */
+
+  const nolsoProductDetailsData = {
+    id: 1,
+
+    name: "iPhone 15 Pro 256GB",
+
+    category: "Phones",
+
+    price: 1199,
+
+    oldPrice: 1299,
+
+    discount: "8% OFF",
+
+    rating: 4.9,
+
+    reviewCount: 128,
+
+    stock: 17,
+
+    seller: "NOLSO Tech",
+
+    location: "Mogadishu",
+
+    condition: "New",
+
+    delivery: "1–2 business days",
+
+    warranty: "12 months official warranty",
+
+    returnPolicy: "14 days return policy",
+
+    description:
+      "iPhone 15 Pro cusub oo leh 256GB storage, camera tayo sare leh iyo battery awood badan.",
+
+    longDescription:
+      "iPhone 15 Pro waxaa lagu sameeyay titanium tayo sare leh. Wuxuu leeyahay camera professional ah, performance degdeg ah, battery waqti dheer shaqaysa iyo 256GB storage. Product-kan waxaa xaqiijiyay seller-ka NOLSO Tech.",
+
+    images: [
+      "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=90",
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=90"
+    ],
+
+    colors: [
+      "Natural Titanium",
+      "Black Titanium",
+      "Blue Titanium",
+      "White Titanium"
+    ],
+
+    storage: [
+      "128GB",
+      "256GB",
+      "512GB",
+      "1TB"
+    ],
+
+    sizes: [
+      "Pro",
+      "Pro Max"
+    ],
+
+    specifications: {
+      "Brand": "Apple",
+      "Model": "iPhone 15 Pro",
+      "Operating System": "iOS",
+      "Display": "6.1-inch Super Retina XDR",
+      "Storage": "256GB",
+      "Camera": "48MP Main Camera",
+      "Battery": "All-day battery",
+      "Network": "5G",
+      "Condition": "New",
+      "Warranty": "12 months"
+    }
+  };
+
+  let nolsoSelectedProductColor =
+    nolsoProductDetailsData.colors[0];
+
+  let nolsoSelectedProductStorage =
+    nolsoProductDetailsData.storage[1];
+
+  let nolsoSelectedProductSize =
+    nolsoProductDetailsData.sizes[0];
+
+  let nolsoProductQuantityValue = 1;
+
+  let nolsoProductIsWishlisted = false;
+
+  function nolsoProductElement(id) {
+    return document.getElementById(id);
+  }
+
+  function nolsoRenderProductGallery() {
+    const thumbnails =
+      nolsoProductElement("nolsoProductThumbnails");
+
+    thumbnails.innerHTML =
+      nolsoProductDetailsData.images.map((image, index) => {
+        return `
+          <button
+            type="button"
+            onclick="nolsoSelectProductImage(${index})"
+            style="
+              height:75px;
+              padding:3px;
+              overflow:hidden;
+              border:2px solid <LaTex>{                 index === 0 ? "#087c68" : "#e0ece8"               };               border-radius:12px;               background:#f5faf8;               cursor:pointer;             "             class="nolso-product-thumbnail"             data-image-index="</LaTex>{index}"
+          >
+            <img
+              src="<LaTex>{image}"               alt="Product thumbnail</LaTex>{index + 1}"
+              style="
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                border-radius:9px;
+              "
+            />
+          </button>
+        `;
+      }).join("");
+  }
+
+  function nolsoSelectProductImage(index) {
+    const selectedImage =
+      nolsoProductDetailsData.images[index];
+
+    nolsoProductElement("nolsoProductMainImage").src =
+      selectedImage;
+
+    document
+      .querySelectorAll(".nolso-product-thumbnail")
+      .forEach(button => {
+        const buttonIndex =
+          Number(button.dataset.imageIndex);
+
+        button.style.border =
+          buttonIndex === index
+            ? "2px solid #087c68"
+            : "2px solid #e0ece8";
+      });
+
+    const message =
+      nolsoProductElement("nolsoGalleryMessage");
+
+    message.style.display = "block";
+    message.textContent =
+      `Image ${index + 1} ayaa la doortay.`;
+
+    setTimeout(() => {
+      message.style.display = "none";
+    }, 1800);
+  }
+
+  function nolsoRenderVariantButtons() {
+    const colorContainer =
+      nolsoProductElement("nolsoColorOptions");
+
+    colorContainer.innerHTML =
+      nolsoProductDetailsData.colors.map((color, index) => {
+        const selected =
+          color === nolsoSelectedProductColor;
+
+        return `
+          <button
+            type="button"
+            onclick="nolsoSelectColor('${color}')"
+            style="
+              padding:9px 11px;
+              color:<LaTex>{selected ? "#087c68" : "#41645b"};               border:1px solid</LaTex>{
+                selected ? "#087c68" : "#dceae5"
+              };
+              border-radius:9px;
+              background:<LaTex>{                 selected ? "#e7f7f2" : "#ffffff"               };               cursor:pointer;               font-size:12px;               font-weight:800;             "           ></LaTex>{color}
+          </button>
+        `;
+      }).join("");
+
+    const storageContainer =
+      nolsoProductElement("nolsoStorageOptions");
+
+    storageContainer.innerHTML =
+      nolsoProductDetailsData.storage.map(storage => {
+        const selected =
+          storage === nolsoSelectedProductStorage;
+
+        return `
+          <button
+            type="button"
+            onclick="nolsoSelectStorage('<LaTex>{storage}')"             style="               min-width:60px;               padding:9px 11px;               color:</LaTex>{selected ? "#087c68" : "#41645b"};
+              border:1px solid <LaTex>{                 selected ? "#087c68" : "#dceae5"               };               border-radius:9px;               background:</LaTex>{
+                selected ? "#e7f7f2" : "#ffffff"
+              };
+              cursor:pointer;
+              font-size:12px;
+              font-weight:800;
+            "
+          >
+            ${storage}
+          </button>
+        `;
+      }).join("");
+
+    const sizeContainer =
+      nolsoProductElement("nolsoSizeOptions");
+
+    sizeContainer.innerHTML =
+      nolsoProductDetailsData.sizes.map(size => {
+        const selected =
+          size === nolsoSelectedProductSize;
+
+        return `
+          <button
+            type="button"
+            onclick="nolsoSelectSize('${size}')"
+            style="
+              min-width:70px;
+              padding:9px 11px;
+              color:<LaTex>{selected ? "#087c68" : "#41645b"};               border:1px solid</LaTex>{
+                selected ? "#087c68" : "#dceae5"
+              };
+              border-radius:9px;
+              background:<LaTex>{                 selected ? "#e7f7f2" : "#ffffff"               };               cursor:pointer;               font-size:12px;               font-weight:800;             "           ></LaTex>{size}
+          </button>
+        `;
+      }).join("");
+  }
+
+  function nolsoSelectColor(color) {
+    nolsoSelectedProductColor = color;
+
+    nolsoProductElement(
+      "nolsoSelectedColorLabel"
+    ).textContent = color;
+
+    nolsoRenderVariantButtons();
+
+    nolsoShowProductMessage(
+      `Color-ka <LaTex>{color} ayaa la doortay.`     );   }    function nolsoSelectStorage(storage) {     nolsoSelectedProductStorage = storage;      nolsoProductElement(       "nolsoSelectedStorageLabel"     ).textContent = storage;      nolsoRenderVariantButtons();      nolsoShowProductMessage(       `Storage-ka</LaTex>{storage} ayaa la doortay.`
+    );
+  }
+
+  function nolsoSelectSize(size) {
+    nolsoSelectedProductSize = size;
+
+    nolsoProductElement(
+      "nolsoSelectedSizeLabel"
+    ).textContent = size;
+
+    nolsoRenderVariantButtons();
+
+    nolsoShowProductMessage(
+      `Model-ka ${size} ayaa la doortay.`
+    );
+  }
+
+  function nolsoChangeProductQuantity(change) {
+    nolsoProductQuantityValue += change;
+
+    if (nolsoProductQuantityValue < 1) {
+      nolsoProductQuantityValue = 1;
+    }
+
+    if (
+      nolsoProductQuantityValue >
+      nolsoProductDetailsData.stock
+    ) {
+      nolsoProductQuantityValue =
+        nolsoProductDetailsData.stock;
+
+      nolsoShowProductMessage(
+        "Quantity-ga kama badnaan karo stock-ga jira."
+      );
+
+      return;
+    }
+
+    nolsoProductElement(
+      "nolsoProductQuantity"
+    ).textContent = nolsoProductQuantityValue;
+  }
+
+  function nolsoToggleProductWishlist() {
+    nolsoProductIsWishlisted =
+      !nolsoProductIsWishlisted;
+
+    const button =
+      nolsoProductElement(
+        "nolsoProductWishlistButton"
+      );
+
+    button.textContent =
+      nolsoProductIsWishlisted ? "♥" : "♡";
+
+    button.style.color =
+      nolsoProductIsWishlisted
+        ? "#dc5362"
+        : "#102d28";
+
+    nolsoShowProductMessage(
+      nolsoProductIsWishlisted
+        ? "Product-ka wishlist ayaa lagu daray."
+        : "Product-ka wishlist ayaa laga saaray."
+    );
+  }
+
+  function nolsoAddProductToCart() {
+    const quantity =
+      nolsoProductQuantityValue;
+
+    const selectedVariant =
+      `${nolsoSelectedProductColor} / <LaTex>{nolsoSelectedProductStorage} /</LaTex>{nolsoSelectedProductSize}`;
+
+    /*
+      Haddii qaybtii 1aad ay leedahay cart variable,
+      waxaa lagu darayaa isla cart-kaas.
+    */
+
+    if (
+      typeof cart !== "undefined" &&
+      Array.isArray(cart)
+    ) {
+      const existing = cart.find(
+        item =>
+          item.id === nolsoProductDetailsData.id &&
+          item.variant === selectedVariant
+      );
+
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({
+          id: nolsoProductDetailsData.id,
+          quantity,
+          variant: selectedVariant,
+          productName: nolsoProductDetailsData.name,
+          price: nolsoProductDetailsData.price
+        });
+      }
+
+      if (
+        typeof saveData === "function"
+      ) {
+        saveData();
+      }
+    }
+
+    nolsoShowProductMessage(
+      `<LaTex>{quantity} product ayaa cart-ka lagu daray.`     );      if (       typeof showToast === "function"     ) {       showToast(         `</LaTex>{quantity} product ayaa cart-ka lagu daray.`
+      );
+    }
+  }
+
+  function nolsoBuyProductNow() {
+    nolsoAddProductToCart();
+
+    nolsoShowProductMessage(
+      "Waxaad u gudbaysaa checkout-ka."
+    );
+
+    setTimeout(() => {
+      if (
+        typeof openCart === "function"
+      ) {
+        openCart();
+      }
+    }, 500);
+  }
+
+  function nolsoShareProduct() {
+    const shareData = {
+      title: nolsoProductDetailsData.name,
+      text: nolsoProductDetailsData.description,
+      url: window.location.href
+    };
+
+    if (
+      navigator.share
+    ) {
+      navigator.share(shareData).catch(() => {});
+    } else {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          nolsoShowProductMessage(
+            "Product link-ga waa la copy-gareeyay."
+          );
+        })
+        .catch(() => {
+          nolsoShowProductMessage(
+            "Product link-ga lama copy-gareyn."
+          );
+        });
+    }
+  }
+
+  function nolsoOpenSellerProfile() {
+    nolsoShowProductMessage(
+      "Seller profile ayaa la furayaa."
+    );
+
+    if (
+      typeof showToast === "function"
+    ) {
+      showToast(
+        "Seller profile ayaa la furayaa."
+      );
+    }
+  }
+
+  function nolsoOpenProductVideo() {
+    nolsoShowProductMessage(
+      "Product video wuxuu furmayaa marka seller-ku video geliyo."
+    );
+
+    if (
+      typeof showToast === "function"
+    ) {
+      showToast(
+        "Product video wuxuu furmayaa marka seller-ku video geliyo."
+      );
+    }
+  }
+
+  function nolsoShowProductMessage(message) {
+    const messageBox =
+      nolsoProductElement("nolsoGalleryMessage");
+
+    messageBox.style.display = "block";
+    messageBox.textContent = message;
+
+    clearTimeout(
+      window.nolsoProductMessageTimer
+    );
+
+    window.nolsoProductMessageTimer =
+      setTimeout(() => {
+        messageBox.style.display = "none";
+      }, 2500);
+  }
+
+  function nolsoOpenProductTab(tabName) {
+    const tabs = [
+      "overview",
+      "specifications",
+      "delivery",
+      "reviews"
+    ];
+
+    tabs.forEach(tab => {
+      const content =
+        nolsoProductElement(
+          `nolsoTab<LaTex>{tab.charAt(0).toUpperCase()}</LaTex>{tab.slice(1)}`
+        );
+
+      if (content) {
+        content.style.display =
+          tab === tabName
+            ? "block"
+            : "none";
+      }
+    });
+
+    document
+      .querySelectorAll(".nolso-product-tab")
+      .forEach(button => {
+        button.classList.toggle(
+          "active",
+          button.dataset.tab === tabName
+        );
+      });
+
+    if (tabName === "reviews") {
+      nolsoScrollToReviews();
+    }
+  }
+
+  function nolsoScrollToReviews() {
+    nolsoOpenProductTab("reviews");
+
+    const reviews =
+      nolsoProductElement("nolsoTabReviews");
+
+    if (reviews) {
+      reviews.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+  }
+
+  function nolsoRenderSpecifications() {
+    const table =
+      nolsoProductElement(
+        "nolsoSpecificationsTable"
+      );
+
+    table.innerHTML =
+      Object.entries(
+        nolsoProductDetailsData.specifications
+      ).map(([key, value]) => {
+        return `
+          <div
+            style="
+              padding:13px;
+              color:#70817c;
+              border-bottom:1px solid #e0ece8;
+              background:#f7faf9;
+              font-size:13px;
+              font-weight:800;
+            "
+          >
+            <LaTex>{key}           </div>            <div             style="               padding:13px;               color:#102d28;               border-bottom:1px solid #e0ece8;               font-size:13px;             "           ></LaTex>{value}
+          </div>
+        `;
+      }).join("");
+  }
+
+  function nolsoRenderProductInformation() {
+    const product =
+      nolsoProductDetailsData;
+
+    nolsoProductElement(
+      "nolsoProductBreadcrumbCategory"
+    ).textContent = product.category;
+
+    nolsoProductElement(
+      "nolsoProductBreadcrumbName"
+    ).textContent = product.name;
+
+    nolsoProductElement(
+      "nolsoProductCategory"
+    ).textContent = product.category;
+
+    nolsoProductElement(
+      "nolsoProductName"
+    ).textContent = product.name;
+
+    nolsoProductElement(
+      "nolsoProductPrice"
+    ).textContent =
+      `<LaTexBlock>{product.price.toLocaleString()}`;      nolsoProductElement(       "nolsoProductOldPrice"     ).textContent =       `</LaTexBlock>{product.oldPrice.toLocaleString()}`;
+
+    nolsoProductElement(
+      "nolsoProductDiscountBadge"
+    ).textContent =
+      `-<LaTex>{product.discount}`;      nolsoProductElement(       "nolsoProductSaveText"     ).textContent =       `Save</LaTex>${(
+        product.oldPrice - product.price
+      ).toLocaleString()}`;
+
+    nolsoProductElement(
+      "nolsoProductDescription"
+    ).textContent =
+      product.description;
+
+    nolsoProductElement(
+      "nolsoLongDescription"
+    ).textContent =
+      product.longDescription;
+
+    nolsoProductElement(
+      "nolsoProductReviewCount"
+    ).textContent =
+      `<LaTex>{product.rating} ·</LaTex>{product.reviewCount} reviews`;
+
+    nolsoProductElement(
+      "nolsoProductStock"
+    ).textContent =
+      `In stock — ${product.stock} available`;
+
+    nolsoProductElement(
+      "nolsoProductDelivery"
+    ).textContent =
+      product.delivery;
+
+    nolsoProductElement(
+      "nolsoSellerName"
+    ).textContent =
+      product.seller;
+
+    nolsoProductElement(
+      "nolsoSellerLocation"
+    ).textContent =
+      product.location;
+  }
+
+  function nolsoRenderRelatedProducts() {
+    const container =
+      nolsoProductElement(
+        "nolsoRelatedProducts"
+      );
+
+    const related = [
+      {
+        name: "iPhone Case Premium",
+        price: "$29",
+        image: "https://images.unsplash.com/photo-1601593346740-925612772716?auto=format&fit=crop&w=600&q=85"
+      },
+      {
+        name: "Wireless Charger",
+        price: "$39",
+        image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=600&q=85"
+      },
+      {
+        name: "AirPods Pro",
+        price: "$249",
+        image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?auto=format&fit=crop&w=600&q=85"
+      },
+      {
+        name: "Phone Screen Protector",
+        price: "$15",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=85"
+      }
+    ];
+
+    container.innerHTML =
+      related.map(product => {
+        return `
+          <div
+            style="
+              overflow:hidden;
+              border:1px solid #e0ece8;
+              border-radius:16px;
+              background:#fff;
+            "
+          >
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              style="
+                width:100%;
+                height:160px;
+                object-fit:cover;
+              "
+            />
+
+            <div style="padding:13px">
+              <strong
+                style="
+                  display:block;
+                  white-space:nowrap;
+                  overflow:hidden;
+                  text-overflow:ellipsis;
+                  font-size:14px;
+                "
+              >
+                ${product.name}
+              </strong>
+
+              <div
+                style="
+                  margin-top:9px;
+                  color:#087c68;
+                  font-size:17px;
+                  font-weight:900;
+                "
+              >
+                ${product.price}
+              </div>
+
+              <button
+                type="button"
+                onclick="nolsoShowProductMessage('Product details ayaa la furayaa.')"
+                style="
+                  width:100%;
+                  margin-top:11px;
+                  padding:9px;
+                  color:#087c68;
+                  border:1px solid #b9ddd4;
+                  border-radius:9px;
+                  background:#fff;
+                  cursor:pointer;
+                  font-size:11px;
+                  font-weight:800;
+                "
+              >
+                View product
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+  }
+
+  function nolsoGoBackToMarketplace() {
+    const marketplace =
+      document.getElementById("marketplace");
+
+    if (marketplace) {
+      marketplace.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    nolsoShowProductMessage(
+      "Waxaad ku noqotay marketplace-ka."
+    );
+  }
+
+  /*
+    Product tabs styling
+  */
+
+  const nolsoProductTabStyle =
+    document.createElement("style");
+
+  nolsoProductTabStyle.textContent = `
+    .nolso-product-tab {
+      padding:10px 13px;
+      color:#70817c;
+      border:0;
+      border-radius:9px;
+      background:transparent;
+      cursor:pointer;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .nolso-product-tab:hover,
+    .nolso-product-tab.active {
+      color:#087c68;
+      background:#e7f7f2;
+    }
+
+    @media (max-width:760px) {
+      .nolso-product-details-grid {
+        grid-template-columns:1fr !important;
+        padding:15px !important;
+      }
+
+      .nolso-product-details-grid > div:first-child > div:first-child {
+        height:330px !important;
+      }
+
+      .nolso-overview-grid {
+        grid-template-columns:1fr !important;
+      }
+
+      .nolso-delivery-grid {
+        grid-template-columns:1fr !important;
+      }
+
+      .nolso-reviews-grid {
+        grid-template-columns:1fr !important;
+      }
+
+      .nolso-related-products-grid {
+        grid-template-columns:repeat(2,1fr) !important;
+        gap:10px !important;
+      }
+
+      #nolso-product-details-section {
+        padding-left:15px !important;
+        padding-right:15px !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(
+    nolsoProductTabStyle
+  );
+
+  /*
+    Initialize section 3
+  */
+
+  nolsoRenderProductInformation();
+  nolsoRenderProductGallery();
+  nolsoRenderVariantButtons();
+  nolsoRenderSpecifications();
+  nolsoRenderRelatedProducts();
+</script>
+<!-- =========================================================
+ NOLSO MASTER SYSTEM
+ QODOBADA 4 ilaa 100
+========================================================= -->
+
+<section id="nolso-master-system" class="nolso-master-system">
+
+  <div class="nolso-system-header">
+    <div>
+      <span class="nolso-eyebrow">NOLSO GLOBAL SUPER APP</span>
+      <h2>Complete Platform Control Center</h2>
+      <p>
+        Hal meel oo lagu maamulo cart, checkout, order, payments,
+        delivery, wallet, support, seller, driver iyo admin system.
+      </p>
+    </div>
+
+    <span class="nolso-live-status">
+      ● System Online
+    </span>
+  </div>
+
+  <!-- SYSTEM NAVIGATION -->
+  <div class="nolso-system-nav">
+    <button class="active" data-system-page="shopping">Shopping</button>
+    <button data-system-page="orders">Orders & Delivery</button>
+    <button data-system-page="payments">Payments & Wallet</button>
+    <button data-system-page="communication">Chat & Support</button>
+    <button data-system-page="seller">Seller Center</button>
+    <button data-system-page="driver">Driver Center</button>
+    <button data-system-page="admin">Admin Panel</button>
+    <button data-system-page="security">Security & Trust</button>
+  </div>
+
+  <!-- SHOPPING PAGE -->
+  <div
+    class="nolso-system-page active"
+    id="nolso-system-shopping"
+  >
+    <div class="nolso-stat-grid">
+      <div class="nolso-stat-card">
+        <span>Saved products</span>
+        <strong id="nolsoSavedProducts">0</strong>
+        <small>Wishlist</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Cart items</span>
+        <strong id="nolsoMasterCartCount">0</strong>
+        <small>Ready for checkout</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Active coupons</span>
+        <strong>12</strong>
+        <small>Available now</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>NOLSO points</span>
+        <strong>2,450</strong>
+        <small>Redeemable rewards</small>
+      </div>
+    </div>
+
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <h3>Product variants</h3>
+        <p>
+          Product kasta wuxuu yeelan karaa colors, sizes, models,
+          storage iyo quantities kala duwan.
+        </p>
+
+        <div class="nolso-variant-box">
+          <label>Color</label>
+          <select id="nolsoMasterColor">
+            <option>Black</option>
+            <option>White</option>
+            <option>Blue</option>
+            <option>Natural Titanium</option>
+          </select>
+
+          <label>Size / Model</label>
+          <select id="nolsoMasterSize">
+            <option>Small</option>
+            <option>Medium</option>
+            <option>Large</option>
+            <option>Pro Max</option>
+          </select>
+
+          <label>Storage</label>
+          <select id="nolsoMasterStorage">
+            <option>64GB</option>
+            <option>128GB</option>
+            <option>256GB</option>
+            <option>512GB</option>
+            <option>1TB</option>
+          </select>
+
+          <button
+            class="nolso-primary-button"
+            onclick="nolsoSaveVariant()"
+          >
+            Save variant
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Wishlist & Save for later</h3>
+        <p>
+          Products, businesses iyo services waxaad ku kaydin kartaa
+          wishlist ama save for later.
+        </p>
+
+        <div class="nolso-feature-list">
+          <div>♡ Save products</div>
+          <div>♡ Save businesses</div>
+          <div>♡ Save services</div>
+          <div>♡ Move item to cart</div>
+        </div>
+
+        <button
+          class="nolso-outline-button"
+          onclick="nolsoNotify('Wishlist-kaaga waa la furay')"
+        >
+          Open wishlist
+        </button>
+      </div>
+    </div>
+
+    <div class="nolso-panel nolso-checkout-panel">
+      <h3>Checkout summary</h3>
+
+      <div class="nolso-checkout-steps">
+        <div class="active">
+          <b>1</b>
+          <span>Address</span>
+        </div>
+
+        <div>
+          <b>2</b>
+          <span>Delivery</span>
+        </div>
+
+        <div>
+          <b>3</b>
+          <span>Payment</span>
+        </div>
+
+        <div>
+          <b>4</b>
+          <span>Confirm</span>
+        </div>
+      </div>
+
+      <div class="nolso-checkout-summary">
+        <div>
+          <span>Product total</span>
+          <strong>$1,199.00</strong>
+        </div>
+
+        <div>
+          <span>Delivery fee</span>
+          <strong>$5.00</strong>
+        </div>
+
+        <div>
+          <span>Discount</span>
+          <strong class="green-text">-$100.00</strong>
+        </div>
+
+        <div>
+          <span>Applicable fees</span>
+          <strong>$3.00</strong>
+        </div>
+
+        <div class="total-row">
+          <span>Final total</span>
+          <strong>$1,107.00</strong>
+        </div>
+      </div>
+
+      <div class="nolso-checkout-actions">
+        <input
+          id="nolsoCouponInput"
+          placeholder="Coupon code"
+        />
+
+        <button
+          class="nolso-outline-button"
+          onclick="nolsoApplyCoupon()"
+        >
+          Apply coupon
+        </button>
+
+        <button
+          class="nolso-primary-button"
+          onclick="nolsoConfirmCheckout()"
+        >
+          Confirm checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS AND DELIVERY -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-orders"
+  >
+    <div class="nolso-panel">
+      <div class="nolso-page-title">
+        <div>
+          <span class="nolso-eyebrow">ORDER MANAGEMENT</span>
+          <h3>Orders & Real-time Delivery</h3>
+        </div>
+
+        <button
+          class="nolso-outline-button"
+          onclick="nolsoNotify('Orders waa la refresh gareeyay')"
+        >
+          ↻ Refresh
+        </button>
+      </div>
+
+      <div class="nolso-order-card">
+        <div class="nolso-order-top">
+          <div>
+            <strong>#NLS-10482</strong>
+            <small>MacBook Air M3 · 1 item</small>
+          </div>
+
+          <span class="nolso-order-status delivered">
+            Delivered
+          </span>
+        </div>
+
+        <div class="nolso-order-progress">
+          <div class="done">
+            <b>✓</b>
+            <span>Confirmed</span>
+          </div>
+
+          <div class="done">
+            <b>✓</b>
+            <span>Preparing</span>
+          </div>
+
+          <div class="done">
+            <b>✓</b>
+            <span>Out for delivery</span>
+          </div>
+
+          <div class="done">
+            <b>✓</b>
+            <span>Delivered</span>
+          </div>
+        </div>
+
+        <div class="nolso-delivery-details">
+          <div>
+            <span>Seller</span>
+            <strong>NOLSO Tech</strong>
+          </div>
+
+          <div>
+            <span>Driver</span>
+            <strong>Abdullahi M. · 4.9 ★</strong>
+          </div>
+
+          <div>
+            <span>ETA</span>
+            <strong>Delivered at 14:20</strong>
+          </div>
+
+          <div>
+            <span>Proof of delivery</span>
+            <strong>PIN verified ✓</strong>
+          </div>
+        </div>
+
+        <button
+          class="nolso-outline-button"
+          onclick="nolsoNotify('Order details iyo tracking map ayaa la furay')"
+        >
+          Open tracking
+        </button>
+      </div>
+
+      <div class="nolso-order-card">
+        <div class="nolso-order-top">
+          <div>
+            <strong>#NLS-10479</strong>
+            <small>Nike Air Max 270 · 1 item</small>
+          </div>
+
+          <span class="nolso-order-status preparing">
+            Out for Delivery
+          </span>
+        </div>
+
+        <div class="nolso-order-progress">
+          <div class="done">
+            <b>✓</b>
+            <span>Confirmed</span>
+          </div>
+
+          <div class="done">
+            <b>✓</b>
+            <span>Preparing</span>
+          </div>
+
+          <div class="active">
+            <b>3</b>
+            <span>Out for delivery</span>
+          </div>
+
+          <div>
+            <b>4</b>
+            <span>Delivered</span>
+          </div>
+        </div>
+
+        <div class="nolso-delivery-map">
+          <div class="map-road"></div>
+          <div class="map-pin seller-pin">S</div>
+          <div class="map-pin driver-pin">D</div>
+          <div class="map-pin customer-pin">C</div>
+
+          <div class="map-label">
+            Live GPS tracking · ETA 18 minutes
+          </div>
+        </div>
+
+        <div class="nolso-delivery-actions">
+          <button
+            class="nolso-outline-button"
+            onclick="nolsoNotify('Driver-ka ayaa la wacay')"
+          >
+            Call driver
+          </button>
+
+          <button
+            class="nolso-outline-button"
+            onclick="nolsoNotify('Chat-ka driver-ka ayaa la furay')"
+          >
+            Chat driver
+          </button>
+
+          <button
+            class="nolso-primary-button"
+            onclick="nolsoNotify('Delivery instructions waa la keydiyay')"
+          >
+            Delivery instructions
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-feature-grid">
+        <div class="nolso-mini-feature">
+          <b>Proof of delivery</b>
+          <span>PIN · Signature · Photo</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>Return system</b>
+          <span>Request · Evidence · Decision</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>Replacement</b>
+          <span>Replacement request workflow</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>Warranty</b>
+          <span>Warranty claims & history</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENTS AND WALLET -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-payments"
+  >
+    <div class="nolso-stat-grid">
+      <div class="nolso-stat-card">
+        <span>Wallet balance</span>
+        <strong>$2,840.50</strong>
+        <small>USD wallet</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Pending payments</span>
+        <strong>2</strong>
+        <small>Verification required</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Refunds</span>
+        <strong>$142</strong>
+        <small>This month</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Transactions</span>
+        <strong>86</strong>
+        <small>Complete ledger</small>
+      </div>
+    </div>
+
+    <div class="nolso-panel-grid">
+      <div class="nolso-wallet-card">
+        <span>Available balance</span>
+        <strong>$2,840.50</strong>
+
+        <div class="nolso-wallet-number">
+          •••• •••• •••• 4092
+        </div>
+
+        <div class="nolso-wallet-actions">
+          <button onclick="nolsoMoneyAction('Deposit')">
+            + Deposit
+          </button>
+
+          <button onclick="nolsoMoneyAction('Send')">
+            ↗ Send
+          </button>
+
+          <button onclick="nolsoMoneyAction('Withdraw')">
+            ↙ Withdraw
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Supported payment providers</h3>
+
+        <div class="nolso-payment-list">
+          <div>
+            <span>Mobile money</span>
+            <b class="payment-active">Active</b>
+          </div>
+
+          <div>
+            <span>Card payments</span>
+            <b class="payment-active">Active</b>
+          </div>
+
+          <div>
+            <span>Bank transfer</span>
+            <b class="payment-pending">Pending</b>
+          </div>
+
+          <div>
+            <span>Country-specific provider</span>
+            <b class="payment-active">Active</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Transaction ledger</h3>
+
+      <div class="nolso-table">
+        <div class="table-head">
+          <span>ID</span>
+          <span>Type</span>
+          <span>Amount</span>
+          <span>Status</span>
+          <span>Date</span>
+        </div>
+
+        <div class="table-row">
+          <span>#TX-90231</span>
+          <span>Payment</span>
+          <span>-$145</span>
+          <b class="payment-success">Verified</b>
+          <span>Today</span>
+        </div>
+
+        <div class="table-row">
+          <span>#TX-90222</span>
+          <span>Refund</span>
+          <span>+$42</span>
+          <b class="payment-success">Completed</b>
+          <span>Yesterday</span>
+        </div>
+
+        <div class="table-row">
+          <span>#TX-90188</span>
+          <span>Deposit</span>
+          <span>+$500</span>
+          <b class="payment-success">Completed</b>
+          <span>Sep 27</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAT AND SUPPORT -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-communication"
+  >
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <div class="nolso-page-title">
+          <h3>Messages</h3>
+          <button
+            class="nolso-primary-button"
+            onclick="nolsoNotify('New chat ayaa la furay')"
+          >
+            + New chat
+          </button>
+        </div>
+
+        <div class="nolso-chat-list">
+          <button onclick="nolsoOpenChat('NOLSO Tech')">
+            <span class="chat-avatar">NT</span>
+            <span>
+              <b>NOLSO Tech</b>
+              <small>Order #NLS-10482 update</small>
+            </span>
+            <em>2m</em>
+          </button>
+
+          <button onclick="nolsoOpenChat('Driver Abdullahi')">
+            <span class="chat-avatar">AD</span>
+            <span>
+              <b>Driver Abdullahi</b>
+              <small>Waxaan imaanayaa 18 daqiiqo</small>
+            </span>
+            <em>8m</em>
+          </button>
+
+          <button onclick="nolsoOpenChat('NOLSO Support')">
+            <span class="chat-avatar support-avatar">?</span>
+            <span>
+              <b>NOLSO Support</b>
+              <small>Ticket #SUP-1240</small>
+            </span>
+            <em>1h</em>
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Support center</h3>
+
+        <div class="nolso-support-actions">
+          <button onclick="nolsoNotify('FAQ ayaa la furay')">
+            <b>FAQ</b>
+            <small>Su'aalaha caadiga ah</small>
+          </button>
+
+          <button onclick="nolsoNotify('Help articles ayaa la furay')">
+            <b>Help articles</b>
+            <small>Hagayaal iyo articles</small>
+          </button>
+
+          <button onclick="nolsoNotify('Support ticket ayaa la sameeyay')">
+            <b>Open ticket</b>
+            <small>Cabasho ama caawimo</small>
+          </button>
+
+          <button onclick="nolsoNotify('Live support ayaa la furay')">
+            <b>Live support</b>
+            <small>La hadal agent</small>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Dispute & report center</h3>
+
+      <div class="nolso-feature-grid">
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Dispute evidence form ayaa la furay')">
+          <b>Open dispute</b>
+          <span>Complaint · Evidence · Investigation</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Report form ayaa la furay')">
+          <b>Report product</b>
+          <span>Product · Seller · Review · Message</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Appeal form ayaa la furay')">
+          <b>Appeal decision</b>
+          <span>Review resolution iyo appeal</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Fraud report ayaa la furay')">
+          <b>Report suspicious activity</b>
+          <span>Fraud protection workflow</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELLER CENTER -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-seller"
+  >
+    <div class="nolso-stat-grid">
+      <div class="nolso-stat-card">
+        <span>Revenue</span>
+        <strong>$18,420</strong>
+        <small class="green-text">↑ 18.4%</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Orders</span>
+        <strong>486</strong>
+        <small class="green-text">↑ 9.2%</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Products</span>
+        <strong>128</strong>
+        <small>12 low stock</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Seller rating</span>
+        <strong>4.8 ★</strong>
+        <small class="green-text">Excellent</small>
+      </div>
+    </div>
+
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <h3>Seller operations</h3>
+
+        <div class="nolso-admin-menu">
+          <button onclick="nolsoNotify('Products manager ayaa la furay')">
+            Products & variants
+          </button>
+
+          <button onclick="nolsoNotify('Seller orders ayaa la furay')">
+            Orders & preparation
+          </button>
+
+          <button onclick="nolsoNotify('Stock manager ayaa la furay')">
+            Stock management
+          </button>
+
+          <button onclick="nolsoNotify('Promotions ayaa la furay')">
+            Promotions & coupons
+          </button>
+
+          <button onclick="nolsoNotify('Withdrawals ayaa la furay')">
+            Withdrawals
+          </button>
+
+          <button onclick="nolsoNotify('Customer analytics ayaa la furay')">
+            Customers & analytics
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Seller quality controls</h3>
+
+        <div class="nolso-quality-list">
+          <div>
+            <span>Cancellation rate</span>
+            <strong>1.2%</strong>
+          </div>
+
+          <div>
+            <span>Delivery performance</span>
+            <strong>96%</strong>
+          </div>
+
+          <div>
+            <span>Customer complaints</span>
+            <strong>3</strong>
+          </div>
+
+          <div>
+            <span>Return rate</span>
+            <strong>2.4%</strong>
+          </div>
+
+          <div>
+            <span>Policy violations</span>
+            <strong class="green-text">0</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Seller analytics</h3>
+
+      <div class="nolso-chart">
+        <div style="height:42%"><span>Jan</span></div>
+        <div style="height:61%"><span>Feb</span></div>
+        <div style="height:52%"><span>Mar</span></div>
+        <div style="height:75%"><span>Apr</span></div>
+        <div style="height:68%"><span>May</span></div>
+        <div style="height:93%"><span>Jun</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRIVER CENTER -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-driver"
+  >
+    <div class="nolso-stat-grid">
+      <div class="nolso-stat-card">
+        <span>Available deliveries</span>
+        <strong>12</strong>
+        <small>Nearby requests</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Today's earnings</span>
+        <strong>$86</strong>
+        <small class="green-text">↑ 12%</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Completed deliveries</span>
+        <strong>38</strong>
+        <small>This week</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Driver rating</span>
+        <strong>4.9 ★</strong>
+        <small>Excellent</small>
+      </div>
+    </div>
+
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <h3>Available delivery requests</h3>
+
+        <div class="nolso-delivery-request">
+          <div>
+            <b>#NLS-10502</b>
+            <small>Pickup: NOLSO Tech</small>
+            <small>Drop-off: Hodan District</small>
+          </div>
+
+          <div>
+            <strong>$8.50</strong>
+            <button
+              class="nolso-primary-button"
+              onclick="nolsoNotify('Delivery request waa la aqbalay')"
+            >
+              Accept
+            </button>
+          </div>
+        </div>
+
+        <div class="nolso-delivery-request">
+          <div>
+            <b>#NLS-10501</b>
+            <small>Pickup: Fresh Market</small>
+            <small>Drop-off: Waberi District</small>
+          </div>
+
+          <div>
+            <strong>$6.00</strong>
+            <button
+              class="nolso-outline-button"
+              onclick="nolsoNotify('Delivery details ayaa la furay')"
+            >
+              View
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Driver performance</h3>
+
+        <div class="nolso-quality-list">
+          <div>
+            <span>Delivery completion</span>
+            <strong>98%</strong>
+          </div>
+
+          <div>
+            <span>Late deliveries</span>
+            <strong>2</strong>
+          </div>
+
+          <div>
+            <span>Customer ratings</span>
+            <strong>4.9 ★</strong>
+          </div>
+
+          <div>
+            <span>Safety reports</span>
+            <strong class="green-text">0</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-admin"
+  >
+    <div class="nolso-stat-grid">
+      <div class="nolso-stat-card">
+        <span>Active users</span>
+        <strong>48,290</strong>
+        <small class="green-text">Live</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Orders today</span>
+        <strong>1,842</strong>
+        <small class="green-text">↑ 14%</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Failed payments</span>
+        <strong>18</strong>
+        <small class="red-text">Needs review</small>
+      </div>
+
+      <div class="nolso-stat-card">
+        <span>Open disputes</span>
+        <strong>27</strong>
+        <small class="yellow-text">Pending</small>
+      </div>
+    </div>
+
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <h3>Admin command center</h3>
+
+        <div class="nolso-admin-menu">
+          <button onclick="nolsoNotify('Users manager ayaa la furay')">
+            Users & verification
+          </button>
+
+          <button onclick="nolsoNotify('Businesses manager ayaa la furay')">
+            Businesses & sellers
+          </button>
+
+          <button onclick="nolsoNotify('Products moderation ayaa la furay')">
+            Products & moderation
+          </button>
+
+          <button onclick="nolsoNotify('Orders operations ayaa la furay')">
+            Orders & delivery
+          </button>
+
+          <button onclick="nolsoNotify('Payments finance ayaa la furay')">
+            Payments & refunds
+          </button>
+
+          <button onclick="nolsoNotify('Reports center ayaa la furay')">
+            Reports & disputes
+          </button>
+
+          <button onclick="nolsoNotify('Promotional content ayaa la furay')">
+            Promotions & banners
+          </button>
+
+          <button onclick="nolsoNotify('Country settings ayaa la furay')">
+            Countries & local rules
+          </button>
+        </div>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Admin permissions</h3>
+
+        <div class="nolso-role-list">
+          <div>
+            <b>Super Admin</b>
+            <span>All system permissions</span>
+          </div>
+
+          <div>
+            <b>Finance Admin</b>
+            <span>Payments, refunds, wallet</span>
+          </div>
+
+          <div>
+            <b>Support Admin</b>
+            <span>Tickets, chat, disputes</span>
+          </div>
+
+          <div>
+            <b>Operations Admin</b>
+            <span>Orders, delivery, drivers</span>
+          </div>
+
+          <div>
+            <b>Content Admin</b>
+            <span>Categories, banners, CMS</span>
+          </div>
+
+          <button
+            class="nolso-primary-button"
+            onclick="nolsoNotify('Custom role form ayaa la furay')"
+          >
+            + Create custom role
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Business analytics</h3>
+
+      <div class="nolso-feature-grid">
+        <div class="nolso-mini-feature">
+          <b>Revenue</b>
+          <span>$284,500 this month</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>Conversion</b>
+          <span>8.42% conversion rate</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>Retention</b>
+          <span>64% returning customers</span>
+        </div>
+
+        <div class="nolso-mini-feature">
+          <b>System health</b>
+          <span class="green-text">99.98% uptime</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY AND TRUST -->
+  <div
+    class="nolso-system-page"
+    id="nolso-system-security"
+  >
+    <div class="nolso-panel-grid">
+      <div class="nolso-panel">
+        <h3>Security center</h3>
+
+        <div class="nolso-security-list">
+          <div>
+            <b>HTTPS / TLS</b>
+            <span class="security-good">Protected</span>
+          </div>
+
+          <div>
+            <b>Password hashing</b>
+            <span class="security-good">Enabled</span>
+          </div>
+
+          <div>
+            <b>OTP protection</b>
+            <span class="security-good">Enabled</span>
+          </div>
+
+          <div>
+            <b>Rate limiting</b>
+            <span class="security-good">Enabled</span>
+          </div>
+
+          <div>
+            <b>Admin 2FA</b>
+            <span class="security-good">Enabled</span>
+          </div>
+
+          <div>
+            <b>Audit logs</b>
+            <span class="security-good">Active</span>
+          </div>
+        </div>
+
+        <button
+          class="nolso-outline-button"
+          onclick="nolsoNotify('Security settings ayaa la furay')"
+        >
+          Manage security
+        </button>
+      </div>
+
+      <div class="nolso-panel">
+        <h3>Trust center</h3>
+
+        <div class="nolso-admin-menu">
+          <button onclick="nolsoNotify('Account verification ayaa la furay')">
+            Account verification
+          </button>
+
+          <button onclick="nolsoNotify('Payment history ayaa la furay')">
+            Payment history
+          </button>
+
+          <button onclick="nolsoNotify('Privacy controls ayaa la furay')">
+            Privacy controls
+          </button>
+
+          <button onclick="nolsoNotify('Seller verification ayaa la furay')">
+            Seller verification
+          </button>
+
+          <button onclick="nolsoNotify('Refund history ayaa la furay')">
+            Refund history
+          </button>
+
+          <button onclick="nolsoNotify('Terms and policies ayaa la furay')">
+            Terms & policies
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Privacy and account controls</h3>
+
+      <div class="nolso-feature-grid">
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Data export request ayaa la diray')">
+          <b>Export my data</b>
+          <span>Download account information</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Devices manager ayaa la furay')">
+          <b>Manage devices</b>
+          <span>Remove unknown devices</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoNotify('Privacy permissions ayaa la furay')">
+          <b>Permissions</b>
+          <span>Location, camera, notifications</span>
+        </button>
+
+        <button class="nolso-mini-feature" onclick="nolsoConfirmDeleteAccount()">
+          <b>Delete account</b>
+          <span class="red-text">Confirmation required</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="nolso-panel">
+      <h3>Legal and compliance</h3>
+
+      <div class="nolso-policy-grid">
+        <button onclick="nolsoNotify('Terms of Service ayaa la furay')">
+          Terms of Service
+        </button>
+
+        <button onclick="nolsoNotify('Privacy Policy ayaa la furay')">
+          Privacy Policy
+        </button>
+
+        <button onclick="nolsoNotify('Refund Policy ayaa la furay')">
+          Refund Policy
+        </button>
+
+        <button onclick="nolsoNotify('Seller Terms ayaa la furay')">
+          Seller Terms
+        </button>
+
+        <button onclick="nolsoNotify('Delivery Terms ayaa la furay')">
+          Delivery Terms
+        </button>
+
+        <button onclick="nolsoNotify('Community Guidelines ayaa la furay')">
+          Community Guidelines
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nolso-master-system {
+    max-width:1500px;
+    margin:40px auto;
+    padding:0 25px 90px;
+    color:#102d28;
+  }
+
+  .nolso-system-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:22px;
+    padding:30px;
+    border-radius:23px;
+    color:#fff;
+    background:
+      radial-gradient(circle at 85% 15%,#35bda3,transparent 30%),
+      linear-gradient(135deg,#075b4c,#0b9377);
+  }
+
+  .nolso-system-header h2 {
+    margin:8px 0;
+    font-size:32px;
+  }
+
+  .nolso-system-header p {
+    max-width:750px;
+    color:#d8f4ed;
+    line-height:1.6;
+    font-size:14px;
+  }
+
+  .nolso-eyebrow {
+    color:#087c68;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+  }
+
+  .nolso-system-header .nolso-eyebrow {
+    color:#b8f2e4;
+  }
+
+  .nolso-live-status {
+    padding:9px 12px;
+    color:#b9f4e2;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:10px;
+    background:rgba(255,255,255,.12);
+    white-space:nowrap;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  .nolso-system-nav {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:22px;
+    padding:9px;
+    border:1px solid #e0ece8;
+    border-radius:15px;
+    background:#fff;
+  }
+
+  .nolso-system-nav button {
+    padding:11px 13px;
+    color:#70817c;
+    border-radius:10px;
+    background:transparent;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  .nolso-system-nav button:hover,
+  .nolso-system-nav button.active {
+    color:#087c68;
+    background:#e7f7f2;
+  }
+
+  .nolso-system-page {
+    display:none;
+  }
+
+  .nolso-system-page.active {
+    display:block;
+  }
+
+  .nolso-stat-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+  }
+
+  .nolso-stat-card {
+    padding:19px;
+    border:1px solid #e0ece8;
+    border-radius:17px;
+    background:#fff;
+  }
+
+  .nolso-stat-card span,
+  .nolso-stat-card small {
+    display:block;
+    color:#70817c;
+    font-size:12px;
+  }
+
+  .nolso-stat-card strong {
+    display:block;
+    margin:8px 0;
+    color:#102d28;
+    font-size:25px;
+  }
+
+  .nolso-panel-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+  }
+
+  .nolso-panel {
+    margin-bottom:18px;
+    padding:21px;
+    border:1px solid #e0ece8;
+    border-radius:20px;
+    background:#fff;
+  }
+
+  .nolso-panel h3 {
+    margin-bottom:10px;
+    font-size:19px;
+  }
+
+  .nolso-panel p {
+    color:#70817c;
+    line-height:1.7;
+    font-size:13px;
+  }
+
+  .nolso-variant-box {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:17px;
+  }
+
+  .nolso-variant-box label {
+    color:#70817c;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  .nolso-variant-box select,
+  .nolso-checkout-actions input {
+    width:100%;
+    margin-top:6px;
+    padding:11px;
+    border:1px solid #dceae5;
+    border-radius:10px;
+    background:#fff;
+    outline:none;
+  }
+
+  .nolso-primary-button,
+  .nolso-outline-button {
+    padding:11px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  .nolso-primary-button {
+    color:#fff;
+    background:#087c68;
+  }
+
+  .nolso-outline-button {
+    color:#087c68;
+    border:1px solid #b9ddd4;
+    background:#fff;
+  }
+
+  .nolso-variant-box .nolso-primary-button {
+    grid-column:1/-1;
+    margin-top:6px;
+  }
+
+  .nolso-feature-list {
+    display:grid;
+    gap:9px;
+    margin:18px 0;
+  }
+
+  .nolso-feature-list div {
+    padding:12px;
+    color:#41645b;
+    border-radius:10px;
+    background:#f5faf8;
+    font-size:13px;
+  }
+
+  .nolso-checkout-panel {
+    margin-top:18px;
+  }
+
+  .nolso-checkout-steps {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin:20px 0;
+  }
+
+  .nolso-checkout-steps div {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#70817c;
+    font-size:12px;
+  }
+
+  .nolso-checkout-steps b {
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#e9f1ee;
+  }
+
+  .nolso-checkout-steps .active {
+    color:#087c68;
+    font-weight:800;
+  }
+
+  .nolso-checkout-steps .active b {
+    color:#fff;
+    background:#087c68;
+  }
+
+  .nolso-checkout-summary {
+    display:grid;
+    gap:10px;
+    max-width:550px;
+    margin-bottom:20px;
+  }
+
+  .nolso-checkout-summary div {
+    display:flex;
+    justify-content:space-between;
+    color:#70817c;
+    font-size:13px;
+  }
+
+  .nolso-checkout-summary strong {
+    color:#102d28;
+  }
+
+  .nolso-checkout-summary .total-row {
+    margin-top:7px;
+    padding-top:13px;
+    color:#102d28;
+    border-top:1px solid #e0ece8;
+    font-size:16px;
+    font-weight:900;
+  }
+
+  .nolso-checkout-actions {
+    display:flex;
+    gap:9px;
+    max-width:700px;
+  }
+
+  .nolso-checkout-actions input {
+    margin-top:0;
+    flex:1;
+  }
+
+  .green-text {
+    color:#15955f !important;
+  }
+
+  .red-text {
+    color:#dc5362 !important;
+  }
+
+  .yellow-text {
+    color:#d79816 !important;
+  }
+
+  .nolso-page-title {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+  }
+
+  .nolso-order-card {
+    padding:19px;
+    margin-bottom:15px;
+    border:1px solid #e0ece8;
+    border-radius:17px;
+    background:#fff;
+  }
+
+  .nolso-order-top {
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:22px;
+  }
+
+  .nolso-order-top small {
+    display:block;
+    margin-top:5px;
+    color:#70817c;
+    font-size:12px;
+  }
+
+  .nolso-order-status {
+    height:max-content;
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:800;
+  }
+
+  .nolso-order-status.delivered {
+    color:#15955f;
+    background:#e8f8ef;
+  }
+
+  .nolso-order-status.preparing {
+    color:#d79816;
+    background:#fff5dc;
+  }
+
+  .nolso-order-progress {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:20px;
+  }
+
+  .nolso-order-progress div {
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#9aa9a5;
+    font-size:11px;
+  }
+
+  .nolso-order-progress b {
+    width:24px;
+    height:24px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    background:#e9f1ee;
+  }
+
+  .nolso-order-progress .done,
+  .nolso-order-progress .active {
+    color:#087c68;
+    font-weight:800;
+  }
+
+  .nolso-order-progress .done b,
+  .nolso-order-progress .active b {
+    color:#fff;
+    background:#087c68;
+  }
+
+  .nolso-delivery-details {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:17px;
+  }
+
+  .nolso-delivery-details div {
+    padding:12px;
+    border-radius:11px;
+    background:#f7faf9;
+  }
+
+  .nolso-delivery-details span,
+  .nolso-delivery-details strong {
+    display:block;
+  }
+
+  .nolso-delivery-details span {
+    color:#70817c;
+    font-size:11px;
+  }
+
+  .nolso-delivery-details strong {
+    margin-top:5px;
+    font-size:12px;
+  }
+
+  .nolso-delivery-map {
+    height:150px;
+    overflow:hidden;
+    position:relative;
+    margin-bottom:15px;
+    border-radius:14px;
+    background:
+      linear-gradient(25deg,transparent 45%,#c9ded7 46%,#c9ded7 49%,transparent 50%),
+      linear-gradient(145deg,transparent 45%,#c9ded7 46%,#c9ded7 49%,transparent 50%),
+      #e8f5f0;
+  }
+
+  .map-road {
+    position:absolute;
+    left:20%;
+    top:48%;
+    width:60%;
+    height:7px;
+    border-radius:10px;
+    background:#fff;
+    transform:rotate(-18deg);
+  }
+
+  .map-pin {
+    position:absolute;
+    width:28px;
+    height:28px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    border-radius:50%;
+    font-size:11px;
+    font-weight:900;
+  }
+
+  .seller-pin {
+    left:16%;
+    top:57%;
+    background:#087c68;
+  }
+
+  .driver-pin {
+    left:47%;
+    top:42%;
+    background:#e4a519;
+  }
+
+  .customer-pin {
+    right:15%;
+    top:27%;
+    background:#dc5362;
+  }
+
+  .map-label {
+    position:absolute;
+    left:14px;
+    bottom:12px;
+    padding:7px 9px;
+    color:#41645b;
+    border-radius:8px;
+    background:#fff;
+    font-size:11px;
+    font-weight:800;
+  }
+
+  .nolso-delivery-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  .nolso-feature-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+
+  .nolso-mini-feature {
+    padding:15px;
+    text-align:left;
+    border:1px solid #e0ece8;
+    border-radius:14px;
+    background:#f7faf9;
+    cursor:pointer;
+  }
+
+  .nolso-mini-feature b,
+  .nolso-mini-feature span {
+    display:block;
+  }
+
+  .nolso-mini-feature span {
+    margin-top:6px;
+    color:#70817c;
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .nolso-wallet-card {
+    padding:28px;
+    color:#fff;
+    border-radius:21px;
+    background:linear-gradient(135deg,#075448,#18a487);
+  }
+
+  .nolso-wallet-card > span {
+    opacity:.75;
+    font-size:13px;
+  }
+
+  .nolso-wallet-card > strong {
+    display:block;
+    margin:20px 0;
+    font-size:38px;
+  }
+
+  .nolso-wallet-number {
+    opacity:.75;
+    font-size:12px;
+  }
+
+  .nolso-wallet-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:22px;
+  }
+
+  .nolso-wallet-actions button {
+    padding:10px 13px;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:10px;
+    background:rgba(255,255,255,.13);
+    cursor:pointer;
+    font-weight:800;
+  }
+
+  .nolso-payment-list,
+  .nolso-quality-list,
+  .nolso-security-list,
+  .nolso-role-list {
+    display:grid;
+    gap:11px;
+  }
+
+  .nolso-payment-list div,
+  .nolso-quality-list div,
+  .nolso-security-list div,
+  .nolso-role-list div {
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#f7faf9;
+    font-size:13px;
+  }
+
+  .payment-active,
+  .security-good {
+    color:#15955f;
+  }
+
+  .payment-pending {
+    color:#d79816;
+  }
+
+  .nolso-table {
+    overflow-x:auto;
+    margin-top:15px;
+  }
+
+  .table-head,
+  .table-row {
+    min-width:650px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+    gap:10px;
+    padding:13px;
+    border-bottom:1px solid #e0ece8;
+    font-size:12px;
+  }
+
+  .table-head {
+    color:#70817c;
+    background:#f7faf9;
+    font-weight:800;
+  }
+
+  .payment-success {
+    color:#15955f;
+  }
+
+  .nolso-chat-list,
+  .nolso-support-actions,
+  .nolso-admin-menu,
+  .nolso-policy-grid {
+    display:grid;
+    gap:9px;
+  }
+
+  .nolso-chat-list button,
+  .nolso-support-actions button,
+  .nolso-admin-menu button,
+  .nolso-policy-grid button {
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    color:#102d28;
+    border:1px solid #e0ece8;
+    border-radius:11px;
+    background:#f7faf9;
+    cursor:pointer;
+    text-align:left;
+  }
+
+  .nolso-chat-list button:hover,
+  .nolso-support-actions button:hover,
+  .nolso-admin-menu button:hover,
+  .nolso-policy-grid button:hover {
+    border-color:#a9d8cd;
+    background:#e7f7f2;
+  }
+
+  .chat-avatar {
+    width:36px;
+    height:36px;
+    display:grid;
+    place-items:center;
+    color:#087c68;
+    border-radius:11px;
+    background:#ccefe5;
+    font-size:11px;
+    font-weight:900;
+  }
+
+  .support-avatar {
+    color:#fff;
+    background:#087c68;
+  }
+
+  .nolso-chat-list button span:nth-child(2),
+  .nolso-support-actions button,
+  .nolso-admin-menu button {
+    flex:1;
+  }
+
+  .nolso-chat-list small,
+  .nolso-support-actions small,
+  .nolso-role-list span {
+    display:block;
+    margin-top:4px;
+    color:#70817c;
+    font-size:11px;
+  }
+
+  .nolso-chat-list em {
+    color:#70817c;
+    font-size:10px;
+    font-style:normal;
+  }
+
+  .nolso-chart {
+    height:190px;
+    display:flex;
+    align-items:end;
+    justify-content:space-around;
+    gap:15px;
+    padding:20px 0 25px;
+  }
+
+  .nolso-chart div {
+    width:35px;
+    min-height:20px;
+    position:relative;
+    border-radius:8px 8px 3px 3px;
+    background:linear-gradient(#3ac2a4,#087c68);
+  }
+
+  .nolso-chart span {
+    position:absolute;
+    bottom:-23px;
+    left:50%;
+    color:#70817c;
+    font-size:10px;
+    transform:translateX(-50%);
+  }
+
+  .nolso-delivery-request {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px;
+    margin-bottom:10px;
+    border:1px solid #e0ece8;
+    border-radius:14px;
+  }
+
+  .nolso-delivery-request small {
+    display:block;
+    margin-top:4px;
+    color:#70817c;
+    font-size:11px;
+  }
+
+  .nolso-delivery-request strong {
+    display:block;
+    margin-bottom:8px;
+    color:#087c68;
+  }
+
+  .nolso-policy-grid {
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  @media (max-width:900px) {
+    .nolso-stat-grid {
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .nolso-panel-grid {
+      grid-template-columns:1fr;
+    }
+
+    .nolso-feature-grid {
+      grid-template-columns:repeat(2,1fr);
+    }
+
+    .nolso-delivery-details {
+      grid-template-columns:repeat(2,1fr);
+    }
+  }
+
+  @media (max-width:650px) {
+    .nolso-master-system {
+      padding-left:15px;
+      padding-right:15px;
+    }
+
+    .nolso-system-header {
+      display:block;
+      padding:23px;
+    }
+
+    .nolso-system-header h2 {
+      font-size:27px;
+    }
+
+    .nolso-live-status {
+      display:inline-block;
+      margin-top:18px;
+    }
+
+    .nolso-system-nav {
+      overflow-x:auto;
+      flex-wrap:nowrap;
+    }
+
+    .nolso-system-nav button {
+      white-space:nowrap;
+    }
+
+    .nolso-stat-grid {
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+    }
+
+    .nolso-stat-card {
+      padding:14px;
+    }
+
+    .nolso-stat-card strong {
+      font-size:20px;
+    }
+
+    .nolso-variant-box {
+      grid-template-columns:1fr;
+    }
+
+    .nolso-checkout-steps {
+      grid-template-columns:1fr 1fr;
+    }
+
+    .nolso-checkout-actions {
+      display:grid;
+    }
+
+    .nolso-order-progress {
+      grid-template-columns:1fr 1fr;
+    }
+
+    .nolso-delivery-details {
+      grid-template-columns:1fr;
+    }
+
+    .nolso-feature-grid {
+      grid-template-columns:1fr 1fr;
+    }
+
+    .nolso-policy-grid {
+      grid-template-columns:1fr;
+    }
+
+    .nolso-delivery-request {
+      align-items:flex-start;
+      flex-direction:column;
+    }
+
+    .nolso-page-title {
+      align-items:flex-start;
+      flex-direction:column;
+    }
+  }
+</style>
+
+<script>
+  function nolsoNotify(message) {
+    if (typeof showToast === "function") {
+      showToast(message);
+      return;
+    }
+
+    alert(message);
+  }
+
+  function nolsoSaveVariant() {
+    const color = document.getElementById(
+      "nolsoMasterColor"
+    ).value;
+
+    const size = document.getElementById(
+      "nolsoMasterSize"
+    ).value;
+
+    const storage = document.getElementById(
+      "nolsoMasterStorage"
+    ).value;
+
+    nolsoNotify(
+      `Variant saved: ${color} / <LaTex>{size} /</LaTex>{storage}`
+    );
+  }
+
+  function nolsoApplyCoupon() {
+    const coupon = document.getElementById(
+      "nolsoCouponInput"
+    ).value.trim();
+
+    if (!coupon) {
+      nolsoNotify("Fadlan geli coupon code.");
+      return;
+    }
+
+    if (coupon.toUpperCase() === "NOLSO10") {
+      nolsoNotify("Coupon NOLSO10 wuxuu bixiyay 10% discount.");
+    } else {
+      nolsoNotify("Coupon-kan lama helin ama wuu dhacay.");
+    }
+  }
+
+  function nolsoConfirmCheckout() {
+    nolsoNotify(
+      "Checkout waa la xaqiijiyay. Backend-ka ayaa hubinaya stock, price iyo payment."
+    );
+  }
+
+  function nolsoMoneyAction(action) {
+    nolsoNotify(
+      `<LaTex>{action} request ayaa la furay. Payment verification ayaa loo baahan yahay.`     );   }    function nolsoOpenChat(name) {     nolsoNotify(`Chat-ka</LaTex>{name} ayaa la furay.`);
+  }
+
+  function nolsoConfirmDeleteAccount() {
+    const answer = confirm(
+      "Ma hubtaa inaad rabto inaad delete-gareyso account-ka?"
+    );
+
+    if (answer) {
+      nolsoNotify(
+        "Delete request waa la diray. Confirmation iyo retention policy ayaa la hubinayaa."
+      );
+    }
+  }
+
+  document
+    .querySelectorAll("[data-system-page]")
+    .forEach(button => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.systemPage;
+
+        document
+          .querySelectorAll("[data-system-page]")
+          .forEach(item => {
+            item.classList.toggle(
+              "active",
+              item === button
+            );
+          });
+
+        document
+          .querySelectorAll(".nolso-system-page")
+          .forEach(page => {
+            page.classList.toggle(
+              "active",
+              page.id === `nolso-system-${target}`
+            );
+          });
+      });
+    });
+
+  const nolsoMasterCart =
+    typeof cart !== "undefined" && Array.isArray(cart)
+      ? cart
+      : [];
+
+  const nolsoMasterWishlist =
+    typeof wishlist !== "undefined" && Array.isArray(wishlist)
+      ? wishlist
+      : [];
+
+  document.getElementById(
+    "nolsoMasterCartCount"
+  ).textContent = nolsoMasterCart.reduce(
+    (total, item) =>
+      total + Number(item.quantity || 0),
+    0
+  );
+
+  document.getElementById(
+    "nolsoSavedProducts"
+  ).textContent = nolsoMasterWishlist.length;
+</script>
+
+</body>
+</html>
+
+
 
